@@ -6,10 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-detail.component.css']
 })
 export class ProductDetailComponent implements OnInit {
+  quantity: number | undefined;
 
-  constructor() { }
+  constructor() {
+    this.quantity = 1;
+  }
 
   ngOnInit(): void {
   }
 
+  changeQuantity(data: any): void {
+    this.quantity += data;
+  }
 }
