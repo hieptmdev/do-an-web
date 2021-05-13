@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { WishListComponent } from './component/wish-list/wish-list.component';
 import { CartComponent } from './component/cart/cart.component';
 import { CheckoutComponent } from './component/checkout/checkout.component';
+import {SlickCarouselModule} from 'ngx-slick-carousel';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CheckoutComponent } from './component/checkout/checkout.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SlickCarouselModule
   ],
   providers: [],
   bootstrap: [AppComponent]

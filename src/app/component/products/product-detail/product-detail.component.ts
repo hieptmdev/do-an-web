@@ -16,6 +16,9 @@ export class ProductDetailComponent implements OnInit {
   }
 
   changeQuantity(data: any): void {
+    if (this.quantity === 1 && data === -1){
+      return;
+    }
     this.quantity += data;
   }
 }

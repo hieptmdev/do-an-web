@@ -62,22 +62,27 @@
         </div>
     </div>
 </div>
-<!-- Main Slider End -->      
+<!-- Main Slider End -->
 
 <!-- Brand Start -->
-<div class="feature">
+<!--<div class="brand">
     <div class="container-fluid">
-        <div class="row align-items-center">
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-1.png" alt=""></div>
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-2.png" alt=""></div>
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-3.png" alt=""></div>
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-4.png" alt=""></div>
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-5.png" alt=""></div>
-            <div class="col-lg-2 col-md-6 feature-col brand-item"><img src="assets/style/img/brand-6.png" alt=""></div>
+        <div class="brand-slider">
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-1.png" alt=""></div>
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-2.png" alt=""></div>
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-3.png" alt=""></div>
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-4.png" alt=""></div>
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-5.png" alt=""></div>
+            <div class="col-lg-2 col-md-6 brand-item"><img src="assets/style/img/brand-6.png" alt=""></div>
         </div>
     </div>
-</div>
-<!-- Brand End -->      
+</div>-->
+<ngx-slick-carousel class="brand carousel" [config]="brandSlickConfig">
+  <div ngxSlickItem *ngFor="let slide of brandSlides" class="col-lg-2 col-md-6 brand-item">
+    <img src="{{slide.img}}" alt="">
+  </div>
+</ngx-slick-carousel>
+<!-- Brand End -->
 
 <!-- Feature Start-->
 <div class="feature">
@@ -122,7 +127,7 @@
         </div>
     </div>
 </div>
-<!-- Feature End-->      
+<!-- Feature End-->
 
 <!-- Category Start-->
 <div class="category">
@@ -175,7 +180,7 @@
         </div>
     </div>
 </div>
-<!-- Category End-->       
+<!-- Category End-->
 
 <!-- Call to Action Start -->
 <div class="call-to-action">
@@ -190,7 +195,7 @@
         </div>
     </div>
 </div>
-<!-- Call to Action End -->       
+<!-- Call to Action End -->
 
 <!-- Featured Product Start -->
 <div class="featured-product product">
@@ -314,7 +319,7 @@
         </div>
     </div>
 </div>
-<!-- Featured Product End -->       
+<!-- Featured Product End -->
 
 <!-- Newsletter Start -->
 <div class="newsletter">
@@ -332,7 +337,7 @@
         </div>
     </div>
 </div>
-<!-- Newsletter End -->        
+<!-- Newsletter End -->
 
 <!-- Recent Product Start -->
 <div class="recent-product product">
