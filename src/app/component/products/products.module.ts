@@ -14,12 +14,13 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     ProductListComponent,
     ProductMenuComponent,
     ProductsComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
   ],
+  exports: [],
   imports: [
     CommonModule,
     ProductsRoutingModule,
-    MDBBootstrapModule.forRoot()
+    MDBBootstrapModule.forRoot(),
   ]
 })
 export class ProductsModule { }
