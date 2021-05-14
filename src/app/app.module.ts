@@ -13,6 +13,9 @@ import {HeaderComponent} from './component/shared/header/header.component';
 import {FooterComponent} from './component/shared/footer/footer.component';
 import {BrandSlideComponent} from './component/shared/brand-slide/brand-slide.component';
 import {SlickCarouselModule} from 'ngx-slick-carousel';
+import {JWT_OPTIONS, JwtHelperService} from '@auth0/angular-jwt';
+import {AuthInterceptor} from './config/auth.interceptor';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -30,9 +33,21 @@ import {SlickCarouselModule} from 'ngx-slick-carousel';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    SlickCarouselModule
+    SlickCarouselModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    JwtHelperService,
+    {
+      provide: JWT_OPTIONS,
+      useValue: JWT_OPTIONS
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   exports: [
     HeaderComponent,
     FooterComponent,

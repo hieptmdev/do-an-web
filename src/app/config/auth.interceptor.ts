@@ -6,13 +6,18 @@ import {
   HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import {JwtHelperService} from '@auth0/angular-jwt';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() {}
+  constructor(private jwtHelperService: JwtHelperService) {}
 
-  intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
+  intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+    const token = localStorage.getItem('token');
+    if (token && this.jwtHelperService.isTokenExpired(token, new Date().getTime())){
+      request = request.clone({headers: request.headers.set('Authorization', `Bearer ${token}`)});
+    }
     return next.handle(request);
   }
 }
