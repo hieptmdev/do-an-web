@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { data } from 'jquery';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -7,12 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductDetailComponent implements OnInit {
   quantity: number | undefined;
-
-  constructor() {
+  prodId: any;
+  productId : any;
+  // ActivatedRoute: lấy param trên url
+  constructor(private route: ActivatedRoute,
+    private productService: ProductService) {
     this.quantity = 1;
+
+    //lấy id của Product dc chọn
+    route.paramMap.subscribe(param => this.prodId = param.get('id')); // tên phải giống vs tên bên routing, như này la lấy đc id prod
   }
 
   ngOnInit(): void {
+    this.loadData();
+  }
+
+
+  //lấy thông tin sản phẩm theo id
+  public loadData(): void {
+    this.productService.profindById(this.prodId).subscribe(data => {
+      this.productId = data
+    },
+    err => console.log(err)
+    )
+
   }
 
   changeQuantity(data: any): void {

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-product-list',
@@ -7,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  constructor() { }
+  products : any;
+
+  constructor(private productsService : ProductService) { }
 
   ngOnInit(): void {
+    this.loadData();
   }
 
+  public loadData(){
+    this.productsService.getAll().subscribe(data => {
+      this.products = data;
+    },
+    error => console.log(error)
+    )
+  }
+
+  public addCart(prodId: any) {
+
+  }
 }

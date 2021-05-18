@@ -7,7 +7,7 @@ import {catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LoginService {
-  url = 'http://localhost:8080/auth';
+  url = 'http://localhost:8080/datn/auth';
 
   constructor(private http: HttpClient) { }
 

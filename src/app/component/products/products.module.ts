@@ -7,6 +7,8 @@ import { ProductMenuComponent } from './product-menu/product-menu.component';
 import { ProductsComponent } from './products.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
+import { BrandsComponent } from '../brands/brands.component';
+import { CategoryComponent } from '../category/category.component';
 
 
 @NgModule({
@@ -15,6 +17,8 @@ import {MDBBootstrapModule} from 'angular-bootstrap-md';
     ProductMenuComponent,
     ProductsComponent,
     ProductDetailComponent,
+    BrandsComponent,
+    CategoryComponent
   ],
   exports: [],
   imports: [

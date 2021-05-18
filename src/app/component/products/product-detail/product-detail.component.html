@@ -3,28 +3,13 @@
         <div class="col-md-7">
           <mdb-carousel class="carousel slide carousel-fade" [type]="'carousel-thumbnails'" [animation]="'fade'">
             <mdb-carousel-item>
-              <img src="assets/style/img/product-1.jpg" alt="Product Image" class="d-block w-100">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img src="assets/style/img/product-3.jpg" alt="Product Image" class="d-block w-100">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img src="assets/style/img/product-5.jpg" alt="Product Image" class="d-block w-100">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img src="assets/style/img/product-7.jpg" alt="Product Image" class="d-block w-100">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img src="assets/style/img/product-9.jpg" alt="Product Image" class="d-block w-100">
-            </mdb-carousel-item>
-            <mdb-carousel-item>
-              <img src="assets/style/img/product-10.jpg" alt="Product Image" class="d-block w-100">
+              <img src="{{productId.image}}" alt="Product Image" class="d-block w-100">
             </mdb-carousel-item>
           </mdb-carousel>
         </div>
         <div class="col-md-5">
             <div class="product-content">
-                <div class="title"><h2>Product Name</h2></div>
+                <div class="title"><h2>{{productId.name}}</h2></div>
                 <div class="ratting">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -34,11 +19,12 @@
                 </div>
                 <div class="price">
                     <h4>Price:</h4>
-                    <p>$99 <span>$149</span></p>
+                    <p>$ {{productId.priceSell}} <span>${{productId.sale}}</span></p>
                 </div>
                 <div class="quantity">
-                    <h4>Quantity:</h4>
+                    <h4>Số Lượng</h4>
                     <div class="qty">
+
                         <button class="btn-minus" (click)="changeQuantity(-1)"><i class="fa fa-minus"></i></button>
                         <input type="text" [value]="quantity">
                         <button class="btn-plus"  (click)="changeQuantity(1)"><i class="fa fa-plus"></i></button>
@@ -46,19 +32,15 @@
                 </div>
                 <div class="p-size">
                     <h4>Size:</h4>
-                    <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn">S</button>
-                        <button type="button" class="btn">M</button>
-                        <button type="button" class="btn">L</button>
-                        <button type="button" class="btn">XL</button>
+                    <div class="btn-group btn-group-sm" *ngIf="productId.sizeList != null">
+                        <button type="button" class="btn" *ngFor="let size of productId.sizeList">{{size.code}}</button>
                     </div>
                 </div>
                 <div class="p-color">
                     <h4>Color:</h4>
                     <div class="btn-group btn-group-sm">
-                        <button type="button" class="btn">White</button>
-                        <button type="button" class="btn">Black</button>
-                        <button type="button" class="btn">Blue</button>
+                        <button type="button" class="btn" *ngFor="let color of productId.coloList">{{color.code}}</button>
+
                     </div>
                 </div>
                 <div class="action">

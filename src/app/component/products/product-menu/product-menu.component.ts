@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { Observable } from 'rxjs';
+import { BrandService } from 'src/app/service/brand.service';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-product-menu',
@@ -6,10 +10,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-menu.component.css']
 })
 export class ProductMenuComponent implements OnInit {
-
-  constructor() { }
+  brands: any;
+  categorys : any;
+  constructor(
+    private brandService: BrandService,
+    private category : CategoryService
+    ) { }
 
   ngOnInit(): void {
+    this.loadBrands();
+    this.loadCategory();
+  }
+
+  public loadCategory() :void{
+    this.category.getCategory().subscribe(
+      data => {
+        this.categorys = data;
+      }
+    )
+  }
+  public loadBrands(): void {
+    this.brandService.getAll().subscribe(
+      data => {
+        this.brands = data;
+      },
+      error => console.log(error)
+    );
   }
 
 }

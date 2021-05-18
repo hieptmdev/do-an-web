@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { CategoryService } from 'src/app/service/category.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +9,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  category : any;
+  constructor( private cateService : CategoryService) { }
 
   ngOnInit(): void {
+
   }
+
+  public loadData() : void {
+    this.cateService.getCategory().subscribe(data => {
+      this.category = data
+    })
+  }
+
 
 }
