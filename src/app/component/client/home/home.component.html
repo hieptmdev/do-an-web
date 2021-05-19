@@ -7,7 +7,7 @@
                   <h2 class="title">CATEGORY</h2>
                     <ul class="navbar-nav" *ngFor="let cate of category">
                         <li class="nav-item">
-                            <a class="nav-link" href="" routerLink = "{{'products/'+cate.id}}"><i ></i>{{cate.name}}</a>
+                             <a class="nav-link" href="" [routerLink]="['/products/category/'+cate.id]" routerLinkActive="router-link-active"  ><i></i> {{cate.name}}</a>
                         </li>
                     </ul>
                 </nav>
@@ -44,7 +44,7 @@
 </div>
 <!-- Main Slider End -->
 
-<!-- Feature Start-->
+<!-- Thanh Toan- Giao Hang - Quyen Loi-->
 <div class="feature">
     <div class="container-fluid">
         <div class="row align-items-center">
@@ -88,7 +88,7 @@
         </div>
     </div>
 </div>
-<!-- Feature End-->
+<!--END Thanh Toan- Giao Hang - Quyen Loi-->
 
 <!-- Category Start-->
 <div class="category">
@@ -97,7 +97,8 @@
             <div class="col-md-3">
                 <div class="category-item ch-400">
                     <img src="assets/style/img/aogucci.jpg" />
-                    <a class="category-name" href="">
+                    <a class="category-name"
+                     href="" [routerLink]="['/products/category/11']" routerLinkActive="router-link-active">
                         <p>Quần áo</p>
                     </a>
                 </div>
@@ -105,13 +106,14 @@
             <div class="col-md-3">
                 <div class="category-item ch-250">
                     <img src="assets/style/img/category-4.jpg" />
-                    <a class="category-name" href="">
+                    <a class="category-name"
+                    href="" [routerLink]="['/products/category/21']" routerLinkActive="router-link-active">
                         <p>Mỹ Phẩm</p>
                     </a>
                 </div>
                 <div class="category-item ch-150">
                     <img src="assets/style/img/category-5.jpg" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href=""[routerLink]="['/products/category/9']" routerLinkActive="router-link-active">
                         <p>Phụ kiện</p>
                     </a>
                 </div>
@@ -119,13 +121,15 @@
             <div class="col-md-3">
                 <div class="category-item ch-150">
                     <img src="assets/style/img/jordan.jpg" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href=""
+                    [routerLink]="['/products/category/10']" routerLinkActive="router-link-active">
+                    >
                         <p>Giày dép</p>
                     </a>
                 </div>
                 <div class="category-item ch-250">
                     <img src="assets/style/img/category-7.jpg" />
-                    <a class="category-name" href="">
+                    <a class="category-name" href=""[routerLink]="['/products/category/9']" routerLinkActive="router-link-active">
                         <p>Phụ kiện</p>
                     </a>
                 </div>
@@ -133,8 +137,9 @@
             <div class="col-md-3">
                 <div class="category-item ch-400">
                     <img src="assets/style/img/balenao.jpg" />
-                    <a class="category-name" href="">
-                        <p>Quần áo nữ</p>
+                    <a class="category-name"
+                     href="" [routerLink]="['/products/category/11']" routerLinkActive="router-link-active">
+                        <p>Quần áo</p>
                     </a>
                 </div>
             </div>
@@ -178,9 +183,9 @@
                         </div>
                     </div>
                     <div class="product-image">
-                        <a href=""routerLink="{{'detail/'+proNew.id}}">
-                            <img src="{{proNew.image}}" alt="Product Image">
-                        </a>
+                      <a href=""[routerLink]="['/products/detail/'+proNew.id]">
+                        <img src="{{proNew.image}}" alt="Product Image">
+                       </a>
                     </div>
                     <div class="product-price">
                         <h3><span>$</span>{{proNew.priceSell}}</h3>
@@ -193,10 +198,6 @@
     </div>
 </div>
 <!-- Featured Product End -->
-
-<!-- Newsletter Start -->
-
-<!-- Newsletter End -->
 
 <!-- sản phẩm mới về -->
 <div class="recent-product product">
@@ -220,7 +221,7 @@
                         </div>
                     </div>
                     <div class="product-image">
-                      <a href=""routerLink="{{'detail/'+proSale.id}}">
+                      <a href=""[routerLink]="['/products/detail/'+proSale.id]">
                         <img src="{{proSale.image}}" alt="Product Image">
                        </a>
                     </div>

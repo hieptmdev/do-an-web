@@ -47,14 +47,8 @@
         <div class="col-md-4" *ngFor="let prod of products">
             <div class="product-item">
                 <div class="product-title">
-                    <a href="#">{{prod.name}}</a>
-                    <div class="ratting">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                    </div>
+                   <a href="" routerLink="{{'detail/'+prod.id}}">{{prod.name}}</a>
+
                 </div>
                 <div class="product-image">
                   <!-- lấy link localhost:/4200/detail/3 -->
@@ -68,7 +62,7 @@
                     </div> -->
                 </div>
                 <div class="product-price">
-                    <h3><span>$</span>{{prod.priceSell}}</h3>
+                    <span style="color: rebeccapurple;font-size: 18px;"><span>$</span>{{prod.priceSell}}</span>
                     <button class="btn" (click)="addCart(prod.id)"><i class="fa fa-shopping-cart"></i>Buy Now</button>
                 </div>
             </div>
