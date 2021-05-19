@@ -23,7 +23,6 @@
             <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                 <div class="navbar-nav mr-auto">
                     <a href="#" class="nav-item nav-link active" routerLink="home" routerLinkActive="active">Home</a>
@@ -42,13 +41,21 @@
                     </div>
                 </div>
                 <div class="navbar-nav ml-auto">
-                    <div class="nav-item dropdown">
-                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">User Account</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Login</a>
-                            <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Register</a>
-                        </div>
+                  <div class="nav-item dropdown" *ngIf="isLogin">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
+                    <div class="dropdown-menu">
+                      <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Đăng nhập</a>
+                      <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Đăng ký</a>
                     </div>
+                  </div>
+                  <div class="nav-item dropdown" *ngIf="!isLogin">
+                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{username}}</a>
+                    <div class="dropdown-menu">
+                      <a href="#" class="dropdown-item">Thông tin tài khoản</a>
+                      <a href="#" class="dropdown-item">Đơn hàng</a>
+                      <a href="#" class="dropdown-item" (click)="logout()">Đăng xuất</a>
+                    </div>
+                  </div>
                 </div>
             </div>
         </nav>
