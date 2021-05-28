@@ -1,5 +1,4 @@
-import { Component, OnInit} from '@angular/core';
-import { data } from 'jquery';
+import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 
@@ -9,8 +8,9 @@ import { ProductService } from 'src/app/service/product.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   category : any;
+  p=1;
+  p2=1;
   productSale : any;
   productNew : any;
   constructor( private categoryService  : CategoryService,

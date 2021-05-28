@@ -1,88 +1,47 @@
-
     <div class="row">
         <div class="col-md-12">
             <div class="product-view-top">
+              <form action="" #formSearch="ngForm" (ngSubmit)="search()">
                 <div class="row">
-                    <div class="col-md-4">
-                        <div class="product-search">
-                            <input type="email" value="Search">
-                            <button><i class="fa fa-search"></i></button>
-                        </div>
+                    <div class="col-md-5">
+                      <select style="width:250px; height: 38px;" [(ngModel)]="selectCategory" name="category">
+                        <option *ngFor="let item of categorys" [value]="item.id">{{item.name}}</option>
+                      </select>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product-short">
-                            <div class="dropdown">
-                                <div class="dropdown-toggle" data-toggle="dropdown">Product short by</div>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item">Newest</a>
-                                    <a href="#" class="dropdown-item">Popular</a>
-                                    <a href="#" class="dropdown-item">Most sale</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-5">
+                      <select style="width:250px; height: 38px;" [(ngModel)]="selectBrand" name="brand">
+                        <option *ngFor="let item of brands" [value]="item.id">{{item.name}}</option>
+                      </select>
                     </div>
-                    <div class="col-md-4">
-                        <div class="product-price-range">
-                            <div class="dropdown">
-                                <div class="dropdown-toggle" data-toggle="dropdown">Product price range</div>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item">$0 to $50</a>
-                                    <a href="#" class="dropdown-item">$51 to $100</a>
-                                    <a href="#" class="dropdown-item">$101 to $150</a>
-                                    <a href="#" class="dropdown-item">$151 to $200</a>
-                                    <a href="#" class="dropdown-item">$201 to $250</a>
-                                    <a href="#" class="dropdown-item">$251 to $300</a>
-                                    <a href="#" class="dropdown-item">$301 to $350</a>
-                                    <a href="#" class="dropdown-item">$351 to $400</a>
-                                    <a href="#" class="dropdown-item">$401 to $450</a>
-                                    <a href="#" class="dropdown-item">$451 to $500</a>
-                                </div>
-                            </div>
-                        </div>
+                    <div class="col-md-2" >
+                      <input style=" width: 110px;height:37px;"type="submit" value="Tìm Kiếm">
                     </div>
                 </div>
+              </form>
             </div>
         </div>
-
-        <div class="col-md-4" *ngFor="let prod of products">
+        <div class="col-md-4" *ngFor="let prod of products | paginate: { itemsPerPage: 9, currentPage: p }">
             <div class="product-item">
-                <div class="product-title">
-                   <a href="" routerLink="{{'detail/'+prod.id}}">{{prod.name}}</a>
+                <div class="product-title"  style= "height: 85px;background-color: white;">
+                   <a style="color: rgb(7, 7, 7);text-decoration: underline;" href="" routerLink="{{'detail/'+prod.id}}">{{prod.name}}</a>
 
                 </div>
                 <div class="product-image">
                   <!-- lấy link localhost:/4200/detail/3 -->
                     <a href="" routerLink="{{'detail/'+prod.id}}">
-                        <img src="{{prod.image}}" alt="Product Image">
+                        <img style=" height: 244px;" src="{{prod.image}}" alt="Product Image">
                     </a>
-                    <!-- <div class="product-action">
-                        <a href="#"><i class="fa fa-cart-plus"></i></a>
-                        <a href="#"><i class="fa fa-heart"></i></a>
-                        <a href="#" routerLink="{{'detail/'+prod.id}}"><i class="fa fa-search"></i></a>
-                    </div> -->
                 </div>
-                <div class="product-price">
-                    <span style="color: rebeccapurple;font-size: 18px;"><span>$</span>{{prod.priceSell}}</span>
-                    <button class="btn" (click)="addCart(prod.id)"><i class="fa fa-shopping-cart"></i>Buy Now</button>
+                <div class="product-price" style="background: rgb(231, 185, 185);">
+                    <span style="color: black;"><span>$</span>{{prod.priceSell}}</span>
+                    <button class="btn" (click)="addCart(prod.id)"><i class="fa fa-shopping-cart"></i>AddToCart</button>
                 </div>
             </div>
         </div>
     </div>
 
     <!-- Pagination Start -->
-    <div class="col-md-12">
-        <nav aria-label="Page navigation example">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Previous</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
-        </nav>
+    <div class="col-md-12" style="padding-top: 20px">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
     </div>
     <!-- Pagination Start -->

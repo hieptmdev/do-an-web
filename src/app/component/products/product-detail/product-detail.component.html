@@ -1,6 +1,6 @@
 <div class="product-detail-top">
   <div class="row align-items-center">
-        <div class="col-md-7">
+        <div class="col-md-7" id="thumbnail" >
           <mdb-carousel class="carousel slide carousel-fade" [type]="'carousel-thumbnails'" [animation]="'fade'">
             <mdb-carousel-item>
               <img src="{{productId.image}}" alt="Product Image" class="d-block w-100">
@@ -44,40 +44,24 @@
                     </div>
                 </div>
                 <div class="action">
-                    <a class="btn" href="#"><i class="fa fa-shopping-cart"></i>Add to Cart</a>
-                    <a class="btn" href="#"><i class="fa fa-shopping-bag"></i>Buy Now</a>
+                    <a class="btn" href="#"><i class="fa fa-shopping-cart" (click)="addCart()"></i>Add to Cart</a>
+                    <a class="btn" href="#"><i class="fa fa-shopping-bag" (click)="buyNow()"></i>Buy Now</a>
                 </div>
             </div>
         </div>
     </div>
   <div class="row product-detail-bottom">
     <div class="col-lg-12">
-      <ul class="nav nav-pills nav-justified">
-        <li class="nav-item">
-          <a class="nav-link active" data-toggle="pill" href="#description">Description</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-toggle="pill" href="#specification">Specification</a>
-        </li>
-      </ul>
+
 
       <div class="tab-content">
         <div id="description" class="container tab-pane active">
-          <h4>Product description</h4>
+          <h4>{{productId.name}}</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. In condimentum quam ac mi viverra dictum. In efficitur ipsum diam, at dignissim lorem tempor in. Vivamus tempor hendrerit finibus. Nulla tristique viverra nisl, sit amet bibendum ante suscipit non. Praesent in faucibus tellus, sed gravida lacus. Vivamus eu diam eros. Aliquam et sapien eget arcu rhoncus scelerisque. Suspendisse sit amet neque neque. Praesent suscipit et magna eu iaculis. Donec arcu libero, commodo ac est a, malesuada finibus dolor. Aenean in ex eu velit semper fermentum. In leo dui, aliquet sit amet eleifend sit amet, varius in turpis. Maecenas fermentum ut ligula at consectetur. Nullam et tortor leo.
+            {{productId.mieuTa}}
           </p>
         </div>
-        <div id="specification" class="container tab-pane fade">
-          <h4>Product specification</h4>
-          <ul>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-            <li>Lorem ipsum dolor sit amet</li>
-          </ul>
-        </div>
+
       </div>
     </div>
   </div>

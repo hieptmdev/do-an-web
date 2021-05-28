@@ -1,0 +1,36 @@
+<!-- Cart Start -->
+<div class="cart-page">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="cart-page-inner">
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <tr >
+                <th>Id</th>
+                <th>Ngày Tạo</th>
+                <th>Mã Đơn Hàng</th>
+                <th>Ngày giao</th>
+                <th>Địa chỉ giao hàng</th>
+                <th>Số điện thoại</th>
+                <th>Số Lượng </th>
+                <th>Tổng Tiền</th>
+              </tr>
+              <tr *ngFor="let oder of dataOder">
+                <td>{{oder.id}}</td>
+                <td>{{oder.createdDate}}</td>
+                <td><a href="#">{{oder.code}}</a></td>
+                <td>{{oder.deliveryDate | date: "dd-MM-yyyy"}}</td>
+                <td>{{oder.deliveryAddress}}</td>
+                <td>{{oder.phoneNumber}}</td>
+                <td>{{oder.numberProduct}}</td>
+                <td>{{oder.totalResult}}</td>
+                </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Cart End -->

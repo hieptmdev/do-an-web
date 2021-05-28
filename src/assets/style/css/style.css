@@ -2,14 +2,14 @@
 /********** General CSS ***********/
 /**********************************/
 body {
-    color: #353535;
+    color: #030303;
     font-family: 'Open Sans', sans-serif;
     font-weight: 400;
     background: #f3f6ff;
 }
 
 a {
-    color: #FF6F61;
+    color: #73f873;
 }
 
 a:hover,
@@ -44,7 +44,7 @@ h2 {
 .back-to-top {
     position: fixed;
     display: none;
-    background: #FF6F61;
+    background: #7df56d;
     color: #ffffff;
     width: 40px;
     height: 40px;
@@ -265,7 +265,8 @@ h2 {
 @media (min-width: 768px) {
     .nav,
     .nav .navbar {
-        background: #FF6F61 !important;
+     color: red;
+      background: #171a18 !important;
     }
 
     .nav .navbar-brand {
@@ -280,7 +281,7 @@ h2 {
 
     .nav .navbar-dark a.nav-link:hover,
     .nav .navbar-dark a.nav-link.active {
-        color: #000000;
+        color: #ff0000;
     }
 }
 
@@ -473,7 +474,7 @@ h2 {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(255, 111, 97, .7);
+    background: rgb(62 42 42 / 20%);
     transition: all 0.3s;
     z-index: 1;
 }
@@ -526,7 +527,7 @@ h2 {
     height: 100%;
     display: flex;
     align-items: center;
-    background: rgba(255, 111, 97, .7);
+    background: rgba(247, 203, 199, 0.7);
     transition: all 0.3s;
     opacity: 0;
 }
@@ -661,7 +662,7 @@ h2 {
 }
 
 .feature .feature-content i {
-    color: #FF6F61;
+    color: #101010;
     font-size: 60px;
     margin-bottom: 30px;
 }
@@ -849,10 +850,9 @@ h2 {
 }
 
 .product .section-header {
-    margin-bottom: 30px;
-    padding: 20px 30px 15px 30px;
-    color: #FF6F61;
-    background: #ffffff;
+    margin-bottom: 20px;
+    color: #000000;
+    background:none;
 }
 
 .product .slick-prev,
@@ -1872,7 +1872,8 @@ h2 {
 .call-to-action {
     position: relative;
     padding: 30px 0;
-    background: #FF6F61;
+    background: #b4817c;
+    border-radius: 20px;
 }
 
 .call-to-action .col-md-6:last-child {
@@ -1880,7 +1881,7 @@ h2 {
 }
 
 .call-to-action h1 {
-    color: #ffffff;
+    color: #f7f7f7;
     font-size: 30px;
     margin: 0;
 }

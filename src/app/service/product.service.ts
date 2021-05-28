@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { observable, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -37,5 +37,18 @@ export class ProductService {
     .pipe(catchError(err => throwError(err)))
   }
 
+  //seach sản phẩm
+  public seachAll(data  :any): Observable<any>{
+    return this.http.get(`${this.url}/seach`,{observe:"body"})
+      .pipe(catchError(err => throwError(err)));
+  }
 
-}
+  //loc san pham
+  public getFind(data: any): Observable<any>{
+    const params = new HttpParams()
+      .set('productTypeId', data.productTypeId)
+      .set('brandId', data.brandId);
+    return this.http.get(`${this.url}/getfind`, {observe : "body", params})
+    .pipe(catchError(er=> throwError(er)));
+  }
+  }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { data } from 'jquery';
 import { CategoryService } from 'src/app/service/category.service';
 import {Router} from '@angular/router';
+import { ProductService } from 'src/app/service/product.service';
+import { SeachForm } from 'src/app/model/seach';
 
 @Component({
   selector: 'app-header',
@@ -9,13 +11,20 @@ import {Router} from '@angular/router';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
+  isAdmin: any;
   username: any;
+  name : any;
   isLogin: boolean | undefined;
   category: any;
+  seachFrom: SeachForm = new SeachForm;
+  testTimKiem : any;
 
   constructor( private cateService: CategoryService,
+    private productService : ProductService,
                private router: Router) {
     this.username = localStorage.getItem('username');
+    this.isAdmin = localStorage.getItem('isAdmin');
+    console.log(this.isAdmin);
     if (this.username != null && localStorage.getItem('token') != null){
       this.isLogin = true;
     }else {
@@ -39,4 +48,15 @@ export class HeaderComponent implements OnInit {
     this.isLogin = false;
     window.location.reload();
   }
+
+  public timkiem() : void{
+    this.productService.seachAll(this.seachFrom).subscribe(
+      data => {
+          this.testTimKiem = data
+      },
+      (error: any) => {
+        alert("Không tìm thấy sản phẩm")}
+    )
+  }
+
 }

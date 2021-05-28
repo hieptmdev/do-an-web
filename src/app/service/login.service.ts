@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Observable, throwError} from 'rxjs';
+import {observable, Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 
 @Injectable({
@@ -13,6 +13,12 @@ export class LoginService {
 
   public login(data: any): Observable<any> {
     return this.http.post(`${this.url}/token`, data, {observe: 'body'})
+      .pipe(catchError(err => throwError(err)));
+  }
+
+  public dangky(data : any):Observable<any>{
+    return this.http.post('http://localhost:8080/datn/users', data,
+      {observe:"body"})
       .pipe(catchError(err => throwError(err)));
   }
 }

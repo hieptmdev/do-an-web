@@ -1,14 +1,12 @@
-<div>
-  <div>
+
+
+  <body class="sb-nav-fixed">
     <app-headeradmin></app-headeradmin>
-  </div>
-  <div>
-    <app-menuadmin></app-menuadmin>
-  </div>
-  <div>
-    <router-outlet></router-outlet>
-  </div>
-  <div>
-    <app-footeradmin></app-footeradmin>
-  </div>
-</div>
+    <div id="layoutSidenav">
+      <app-menuadmin></app-menuadmin>
+        <div id="layoutSidenav_content">
+          <router-outlet></router-outlet>
+        </div>
+    </div>
+</body>
+

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { data } from 'jquery';
 import { ProductService } from 'src/app/service/product.service';
+import {CookieService} from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-product-detail',
@@ -14,7 +15,8 @@ export class ProductDetailComponent implements OnInit {
   productId : any;
   // ActivatedRoute: lấy param trên url
   constructor(private route: ActivatedRoute,
-    private productService: ProductService) {
+              private productService: ProductService,
+              private cookieService: CookieService) {
     this.quantity = 1;
 
     //lấy id của Product dc chọn
@@ -36,10 +38,19 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
+  // tslint:disable-next-line:no-shadowed-variable
   changeQuantity(data: any): void {
     if (this.quantity === 1 && data === -1){
       return;
     }
     this.quantity += data;
+  }
+
+  addCart(): void {
+
+  }
+
+  buyNow(): void {
+
   }
 }

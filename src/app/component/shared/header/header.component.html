@@ -29,30 +29,27 @@
                     <a href="#" class="nav-item nav-link" routerLink="products" routerLinkActive="active">Products</a>
                     <a href="#" class="nav-item nav-link" routerLink="cart" routerLinkActive="active">Cart</a>
                     <a href="#" class="nav-item nav-link" routerLink="checkout" routerLinkActive="active">Checkout</a>
-                    <a href="#" class="nav-item nav-link" routerLink="user" routerLinkActive="active">My Account</a>
+                    <a href="#" class="nav-item nav-link" routerLink="admin" routerLinkActive="active" *ngIf="isAdmin">Admin</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh Mục</a>
-                        <div class="dropdown-menu">
-                            <a href="#" class="dropdown-item" routerLink="wish-list" routerLinkActive="active">Wishlist</a>
-                            <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active"></a><a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Login & Register</a>
-                            <a href="contact.html" class="dropdown-item">Contact Us</a>
-
+                        <div class="dropdown-menu" >
+                            <li href="" class="dropdown-item" routerLink="wish-list" routerLinkActive="active" *ngFor="let item of category">{{item.name}}</li>
                         </div>
                     </div>
                 </div>
                 <div class="navbar-nav ml-auto">
-                  <div class="nav-item dropdown" *ngIf="isLogin">
+                  <div class="nav-item dropdown" *ngIf="!isLogin">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Tài khoản</a>
                     <div class="dropdown-menu">
                       <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Đăng nhập</a>
                       <a href="#" class="dropdown-item" routerLink="login-register" routerLinkActive="active">Đăng ký</a>
                     </div>
                   </div>
-                  <div class="nav-item dropdown" *ngIf="!isLogin">
+                  <div class="nav-item dropdown" *ngIf="isLogin">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{username}}</a>
                     <div class="dropdown-menu">
-                      <a href="#" class="dropdown-item">Thông tin tài khoản</a>
-                      <a href="#" class="dropdown-item">Đơn hàng</a>
+                      <a href="#" class="dropdown-item">Thông tin tài khoản</a>
+                      <a href="order" class="dropdown-item">Đơn hàng</a>
                       <a href="#" class="dropdown-item" (click)="logout()">Đăng xuất</a>
                     </div>
                   </div>
@@ -76,15 +73,16 @@
             </div>
             <div class="col-md-6">
                 <div class="search">
-                    <input type="text" placeholder="Search">
-                    <button><i class="fa fa-search"></i></button>
+                    <input type="text" placeholder="Search"[(ngModel)]="seachFrom.seach">
+                    <button class="fa fa-search" (click)="timkiem()"> </button>
                 </div>
+
             </div>
             <div class="col-md-3">
                 <div class="user">
                     <a href="#" class="btn cart" routerLink="cart" routerLinkActive="active">
                         <i class="fa fa-shopping-cart"></i>
-                        <span>(0)</span>
+                        <span class="test">(0)</span>
                     </a>
                 </div>
             </div>

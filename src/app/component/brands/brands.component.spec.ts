@@ -5,7 +5,6 @@ import { BrandsComponent } from './brands.component';
 describe('BrandsComponent', () => {
   let component: BrandsComponent;
   let fixture: ComponentFixture<BrandsComponent>;
-
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ BrandsComponent ]

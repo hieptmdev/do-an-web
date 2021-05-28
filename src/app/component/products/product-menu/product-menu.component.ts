@@ -3,6 +3,7 @@ import { data } from 'jquery';
 import { Observable } from 'rxjs';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
+import { ProductService } from 'src/app/service/product.service';
 
 @Component({
   selector: 'app-product-menu',
@@ -14,7 +15,8 @@ export class ProductMenuComponent implements OnInit {
   categorys : any;
   constructor(
     private brandService: BrandService,
-    private category : CategoryService
+    private category : CategoryService,
+    private productService : ProductService
     ) { }
 
   ngOnInit(): void {
@@ -37,5 +39,12 @@ export class ProductMenuComponent implements OnInit {
       error => console.log(error)
     );
   }
+  // public reload(): void {
+  //   window.location.reload();
+  // }
+  public loadProdByCategory(cateId: any): void{
+
+  }
+
 
 }

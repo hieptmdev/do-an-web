@@ -9,6 +9,8 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import {MDBBootstrapModule} from 'angular-bootstrap-md';
 import { BrandsComponent } from '../brands/brands.component';
 import { CategoryComponent } from '../category/category.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -25,6 +27,8 @@ import { CategoryComponent } from '../category/category.component';
     CommonModule,
     ProductsRoutingModule,
     MDBBootstrapModule.forRoot(),
+    NgxPaginationModule,
+    FormsModule
   ]
 })
 export class ProductsModule { }
