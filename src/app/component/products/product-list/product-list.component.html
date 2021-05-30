@@ -20,7 +20,7 @@
               </form>
             </div>
         </div>
-        <div class="col-md-4" *ngFor="let prod of products | paginate: { itemsPerPage: 9, currentPage: p }">
+        <div class="col-md-4" *ngFor="let prod of sharedDataService.productList | paginate: { itemsPerPage: 9, currentPage: p }">
             <div class="product-item">
                 <div class="product-title"  style= "height: 85px;background-color: white;">
                    <a style="color: rgb(7, 7, 7);text-decoration: underline;" href="" routerLink="{{'detail/'+prod.id}}">{{prod.name}}</a>

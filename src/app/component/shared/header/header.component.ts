@@ -4,6 +4,7 @@ import { CategoryService } from 'src/app/service/category.service';
 import {Router} from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { SeachForm } from 'src/app/model/seach';
+import {SharedDataService} from '../../../service/shared-data.service';
 
 @Component({
   selector: 'app-header',
@@ -13,15 +14,16 @@ import { SeachForm } from 'src/app/model/seach';
 export class HeaderComponent implements OnInit {
   isAdmin: any;
   username: any;
-  name : any;
+  name: any;
   isLogin: boolean | undefined;
   category: any;
-  seachFrom: SeachForm = new SeachForm;
-  testTimKiem : any;
+  seachFrom: SeachForm = new SeachForm();
+  testTimKiem: any;
 
   constructor( private cateService: CategoryService,
-    private productService : ProductService,
-               private router: Router) {
+               private productService: ProductService,
+               private router: Router,
+               public sharedDataService: SharedDataService) {
     this.username = localStorage.getItem('username');
     this.isAdmin = localStorage.getItem('isAdmin');
     console.log(this.isAdmin);
@@ -49,14 +51,16 @@ export class HeaderComponent implements OnInit {
     window.location.reload();
   }
 
-  public timkiem() : void{
+  public timkiem(): void{
     this.productService.seachAll(this.seachFrom).subscribe(
       data => {
-          this.testTimKiem = data
+          this.testTimKiem = data;
+          this.sharedDataService.productList = data;
       },
       (error: any) => {
-        alert("Không tìm thấy sản phẩm")}
-    )
+        alert('Không tìm thấy sản phẩm');
+      }
+    );
   }
 
 }

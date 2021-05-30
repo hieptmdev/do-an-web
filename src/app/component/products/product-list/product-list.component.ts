@@ -3,6 +3,7 @@ import { data } from 'jquery';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
+import {SharedDataService} from '../../../service/shared-data.service';
 
 @Component({
   selector: 'app-product-list',
@@ -12,16 +13,16 @@ import { ProductService } from 'src/app/service/product.service';
 })
 export class ProductListComponent implements OnInit {
   p = 1;
-  products : any;
-  categorys : any;
-  brands : any;
+  products: any;
+  categorys: any;
+  brands: any;
   selectCategory: any;
   selectBrand: any;
   constructor(
-    private productsService : ProductService,
-    private brandService : BrandService,
-    private categoryService : CategoryService
-    ) { }
+    private productsService: ProductService,
+    private brandService: BrandService,
+    private categoryService: CategoryService,
+    public sharedDataService: SharedDataService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -32,6 +33,7 @@ export class ProductListComponent implements OnInit {
   public loadData(): void{
     this.productsService.getAll().subscribe(data => {
       this.products = data;
+      this.sharedDataService.productList = data;
     },
     error => console.log(error)
     );
@@ -43,6 +45,7 @@ export class ProductListComponent implements OnInit {
     this.productsService.getFind(data).subscribe(
       data=> {
         this.products = data;
+        this.sharedDataService.productList = data;
       },
       error => console.log(error)
     )
@@ -63,15 +66,15 @@ export class ProductListComponent implements OnInit {
       error => console.log(error)
     );
   }
-  public addCart(prodId: any) {
+  public addCart(prodId: any): void{
 
   }
 
-  public nextPage(){
+  public nextPage(): void{
 
   }
 
-  public search() {
+  public search(): void {
     console.log(this.selectCategory);
     const data = {
       productTypeId: this.selectCategory,
@@ -80,6 +83,7 @@ export class ProductListComponent implements OnInit {
     this.productsService.getFind(data).subscribe(
       data=> {
         this.products = data;
+        this.sharedDataService.productList = data;
       },
       error => console.log(error)
     );
