@@ -32,7 +32,6 @@ export class ProductListComponent implements OnInit {
 
   public loadData(): void{
     this.productsService.getAll().subscribe(data => {
-      this.products = data;
       this.sharedDataService.productList = data;
     },
     error => console.log(error)
@@ -44,7 +43,6 @@ export class ProductListComponent implements OnInit {
   public loadTimkiem(): void{
     this.productsService.getFind(data).subscribe(
       data=> {
-        this.products = data;
         this.sharedDataService.productList = data;
       },
       error => console.log(error)
@@ -82,7 +80,6 @@ export class ProductListComponent implements OnInit {
     };
     this.productsService.getFind(data).subscribe(
       data=> {
-        this.products = data;
         this.sharedDataService.productList = data;
       },
       error => console.log(error)

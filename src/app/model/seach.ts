@@ -1,4 +1,3 @@
 export class SeachForm {
-  seach : String | undefined;
-
+  seach: string | undefined;
 }
