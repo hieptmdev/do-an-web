@@ -4,6 +4,7 @@ import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
 import {SharedDataService} from '../../../service/shared-data.service';
+import {CartService} from '../../../service/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -22,7 +23,8 @@ export class ProductListComponent implements OnInit {
     private productsService: ProductService,
     private brandService: BrandService,
     private categoryService: CategoryService,
-    public sharedDataService: SharedDataService) { }
+    public sharedDataService: SharedDataService,
+    private cartService: CartService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -64,7 +66,7 @@ export class ProductListComponent implements OnInit {
       error => console.log(error)
     );
   }
-  public addCart(prodId: any): void{
+  public addCart(prod: any): void{
 
   }
 
