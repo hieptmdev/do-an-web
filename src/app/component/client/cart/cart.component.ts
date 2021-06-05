@@ -7,17 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
 
-  public soluong= 1;
-  public priceSell= 99;
+  public soluong = 1;
+  public priceSell = 99;
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  public tangsl(){
+  public tangsl(): void{
     this.soluong++;
   }
-  public giamsl(){
+  public giamsl(): void{
     this.soluong--;
   }
 }
