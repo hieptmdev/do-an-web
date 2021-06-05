@@ -33,7 +33,7 @@ export class LoginRegisterComponent implements OnInit {
         alert("Đăng Ký Thành Công")
       },
       (error: any) => {
-        alert("Đăng ký thất bại, là mẹ thành công")}
+        alert("Đăng ký thất bại")}
     )
   }
 
@@ -46,9 +46,13 @@ export class LoginRegisterComponent implements OnInit {
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
         localStorage.setItem('isAdmin', this.jwtService.decodeToken(token).admin_account);
+        localStorage.setItem('name',this.jwtService.decodeToken(token).name);
+        localStorage.setItem('code',this.jwtService.decodeToken(token).role);
+        localStorage.setItem('email',this.jwtService.decodeToken(token).email)
         this.router.navigate(['home']).then(() => window.location.reload());
       },
         (error: any) => {
+          alert("Đăng nhập không thành công!")
         console.log(error);
       }
     );

@@ -29,6 +29,7 @@ import { FormsModule } from '@angular/forms';
     MDBBootstrapModule.forRoot(),
     NgxPaginationModule,
     FormsModule
+
   ]
 })
 export class ProductsModule { }

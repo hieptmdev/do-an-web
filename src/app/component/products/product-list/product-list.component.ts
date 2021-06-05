@@ -13,7 +13,6 @@ import {SharedDataService} from '../../../service/shared-data.service';
 })
 export class ProductListComponent implements OnInit {
   p = 1;
-  products: any;
   categorys: any;
   brands: any;
   selectCategory: any;
@@ -74,10 +73,12 @@ export class ProductListComponent implements OnInit {
 
   public search(): void {
     console.log(this.selectCategory);
+    //nhận vào data
     const data = {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
+    //truyền vào data
     this.productsService.getFind(data).subscribe(
       data=> {
         this.sharedDataService.productList = data;

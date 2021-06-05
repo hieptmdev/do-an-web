@@ -18,7 +18,6 @@ export class ProductDetailComponent implements OnInit {
               private productService: ProductService,
               private cookieService: CookieService) {
     this.quantity = 1;
-
     //lấy id của Product dc chọn
     route.paramMap.subscribe(param => this.prodId = param.get('id')); // tên phải giống vs tên bên routing, như này la lấy đc id prod
   }

@@ -19,13 +19,15 @@ export class HeaderComponent implements OnInit {
   category: any;
   seachFrom: SeachForm = new SeachForm();
   testTimKiem: any;
-
+  code: any;
   constructor( private cateService: CategoryService,
                private productService: ProductService,
                private router: Router,
                public sharedDataService: SharedDataService) {
     this.username = localStorage.getItem('username');
     this.isAdmin = localStorage.getItem('isAdmin');
+    this.name = localStorage.getItem("name");
+    this.code = localStorage.getItem("code")
     console.log(this.isAdmin);
     if (this.username != null && localStorage.getItem('token') != null){
       this.isLogin = true;

@@ -30,12 +30,6 @@
                         <button class="btn-plus"  (click)="changeQuantity(1)"><i class="fa fa-plus"></i></button>
                     </div>
                 </div>
-                <div class="p-size">
-                    <h4>Size:</h4>
-                    <div class="btn-group btn-group-sm" *ngIf="productId.sizeList != null">
-                        <button type="button" class="btn" *ngFor="let size of productId.sizeList">{{size.code}}</button>
-                    </div>
-                </div>
                 <div class="p-color">
                     <h4>Color:</h4>
                     <div class="btn-group btn-group-sm">

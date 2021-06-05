@@ -29,7 +29,7 @@
                     <a href="#" class="nav-item nav-link" routerLink="products" routerLinkActive="active">Products</a>
                     <a href="#" class="nav-item nav-link" routerLink="cart" routerLinkActive="active">Cart</a>
                     <a href="#" class="nav-item nav-link" routerLink="checkout" routerLinkActive="active">Checkout</a>
-                    <a href="#" class="nav-item nav-link" routerLink="admin" routerLinkActive="active" *ngIf="isAdmin">Admin</a>
+                    <a href="#" class="nav-item nav-link" routerLink="admin" routerLinkActive="active" *ngIf="isAdmin">Dashboard</a>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Danh Mục</a>
                         <div class="dropdown-menu" >
@@ -48,7 +48,7 @@
                   <div class="nav-item dropdown" *ngIf="isLogin">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">{{username}}</a>
                     <div class="dropdown-menu">
-                      <a href="#" class="dropdown-item">Thông tin tài khoản</a>
+                      <!-- <a href="#" class="dropdown-item">Thông tin tài khoản</a> -->
                       <a href="order" class="dropdown-item">Đơn hàng</a>
                       <a href="#" class="dropdown-item" (click)="logout()">Đăng xuất</a>
                     </div>
@@ -76,7 +76,6 @@
                     <input type="text" placeholder="Search"[(ngModel)]="seachFrom.seach">
                     <button class="fa fa-search" (click)="timkiem()"> </button>
                 </div>
-
             </div>
             <div class="col-md-3">
                 <div class="user">

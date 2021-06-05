@@ -19,9 +19,25 @@ export class CategoryService {
 
   //Lấy sản phẩm theo Category
   public getProductForCategory(cateId :number ): Observable<any>{
-
     return this.http.get(`${this.url}/${cateId}`,{observe : "body"})
     .pipe(catchError(err => throwError(err)))
 
+  }
+  public getById(id: number): Observable<any> {
+    return this.http
+      .get(`${this.url}/${id}`, { observe: 'body' })
+      .pipe(catchError((e) => throwError(e)));
+  }
+
+  public saveOfupdate(data: any): Observable<any> {
+    return this.http
+      .post(`${this.url}`, data, { observe: 'body' })
+      .pipe(catchError((e) => throwError(e)));
+  }
+
+  public deleteCate(id: number): Observable<any> {
+    return this.http
+      .delete(`${this.url}/${id}`, { observe: 'body' })
+      .pipe(catchError((er) => throwError(er)));
   }
 }
