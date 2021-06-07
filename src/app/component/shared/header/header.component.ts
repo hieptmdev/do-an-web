@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { data } from 'jquery';
 import { CategoryService } from 'src/app/service/category.service';
 import {Router} from '@angular/router';
 import { ProductService } from 'src/app/service/product.service';
 import { SeachForm } from 'src/app/model/seach';
 import {SharedDataService} from '../../../service/shared-data.service';
+import {CartService} from '../../../service/cart.service';
 
 @Component({
   selector: 'app-header',
@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit {
   constructor( private cateService: CategoryService,
                private productService: ProductService,
                private router: Router,
-               public sharedDataService: SharedDataService) {
+               public sharedDataService: SharedDataService,
+               private cartService: CartService) {
     this.username = localStorage.getItem('username');
     this.isAdmin = localStorage.getItem('isAdmin');
     this.name = localStorage.getItem("name");

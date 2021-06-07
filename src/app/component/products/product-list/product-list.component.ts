@@ -47,15 +47,15 @@ export class ProductListComponent implements OnInit {
         this.sharedDataService.productList = data;
       },
       error => console.log(error)
-    )
+    );
   }
-  //Get Brand,cate
-  public loadCategory() :void{
+  // Get Brand,cate
+  public loadCategory(): void{
     this.categoryService.getCategory().subscribe(
       data => {
         this.categorys = data;
       }
-    )
+    );
   }
   public loadBrands(): void {
     this.brandService.getAll().subscribe(
@@ -66,7 +66,10 @@ export class ProductListComponent implements OnInit {
     );
   }
   public addCart(prod: any): void{
-
+    const cartDetails: any[] = [];
+    cartDetails.push(prod);
+    this.sharedDataService.cart.cartDetails = cartDetails;
+    this.cartService.addCartDetail(this.sharedDataService.cart);
   }
 
   public nextPage(): void{
@@ -75,11 +78,13 @@ export class ProductListComponent implements OnInit {
 
   public search(): void {
     console.log(this.selectCategory);
-    //nhận vào data
+
+    // nhận vào data
     const data = {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
+
     //truyền vào data
     this.productsService.getFind(data).subscribe(
       data=> {

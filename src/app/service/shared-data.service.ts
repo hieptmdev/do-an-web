@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class SharedDataService {
   public productList: any;
-  public cartList: any[] | undefined;
+  public cart: any;
 
   constructor() { }
 }
