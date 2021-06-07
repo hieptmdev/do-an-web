@@ -1,0 +1,147 @@
+<div class="col-sm-8">
+  <h1>Edit Sản phẩm {{productId.name}}</h1>
+  <div class="addproductnew">
+    <div class="container-fluid">
+      <div class="row">
+        <div>
+          <div class="product-form">
+            <div class="row">
+              <div class="col-md-12">
+                <label>Tên sản phẩm</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="tên sản phẩm"
+                  [(ngModel)]="addProductForm.name"
+
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Code</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="mã sản phẩm"
+                  [(ngModel)]="addProductForm.code"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Giá sản phẩm</label>
+                <input
+                  class="form-control"
+                  type="number"
+                  placeholder="giá sản phẩm"
+                  [(ngModel)]="addProductForm.priceSell"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Giá gốc</label>
+                <input
+                  class="form-control"
+                  type="number"
+                  placeholder="Nhập giá gốc"
+                  [(ngModel)]="addProductForm.sale"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Tình trạng</label>
+                <select
+                  style="
+                    width: 210px;
+                    height: 38px;
+                    margin-bottom: 15px;
+                    margin-left: 20px;
+                  "
+                >
+                  <option value="new">new</option>
+                  <option value="sale">sale</option>
+                  <option value="null">thường</option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <label>Miêu tả</label>
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="miêu tả"
+                  [(ngModel)]="addProductForm.mieuTa"
+                />
+              </div>
+              <div class="col-md-12">
+                <input
+                  class="form-control"
+                  type="text"
+                  placeholder="đường dẫn ảnh"
+                  [(ngModel)]="addProductForm.image"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Ngày nhập</label>
+                <input
+                  class="form-control"
+                  type="datetime-local"
+                  placeholder="Ngày tạo"
+                  [(ngModel)]="addProductForm.createdDate"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Ngày update</label>
+                <input
+                  class="form-control"
+                  type="datetime-local"
+                  placeholder="Ngày update"
+                  [(ngModel)]="addProductForm.updatedDate"
+                />
+              </div>
+              <div class="col-md-12">
+                <label>Hãng sản xuất</label>
+                <select
+                  style="
+                    width: 210px;
+                    height: 38px;
+                    margin-bottom: 15px;
+                    margin-left: 20px;
+                  "
+                  [(ngModel)]="selectBrand"
+                  name="brand"
+                >
+                  <option *ngFor="let item of brands" [value]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-12">
+                <label>Thể loại</label>
+                <select
+                  style="
+                    width: 210px;
+                    height: 38px;
+                    margin-bottom: 15px;
+                    margin-left: 63px;
+                  "
+                  [(ngModel)]="selectCategory"
+                  name="category"
+                >
+                  <option *ngFor="let item of categorys" [value]="item.id">
+                    {{ item.name }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <button
+                  type="submit"
+                  class="btn btn-primary"
+                  style="width: 140px; height: 40px"
+                  (click)="addproducts()"
+                >
+                  Update Products
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

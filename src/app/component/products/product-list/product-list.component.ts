@@ -14,7 +14,6 @@ import {CartService} from '../../../service/cart.service';
 })
 export class ProductListComponent implements OnInit {
   p = 1;
-  products: any;
   categorys: any;
   brands: any;
   selectCategory: any;
@@ -80,11 +79,16 @@ export class ProductListComponent implements OnInit {
   public search(): void {
     console.log(this.selectCategory);
     const obj = {
+    //nhận vào data
+    const data = {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
     this.productsService.getFind(obj).subscribe(
       data => {
+    //truyền vào data
+    this.productsService.getFind(data).subscribe(
+      data=> {
         this.sharedDataService.productList = data;
       },
       error => console.log(error)

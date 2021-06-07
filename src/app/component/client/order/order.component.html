@@ -18,36 +18,32 @@
               </tr>
               <tr *ngFor="let oder of dataOder">
                 <td>{{oder.id}}</td>
-                <td>{{oder.createdDate}}</td>
+                <td>{{oder.createdDate|date: "dd-MM-yyyy"}}</td>
                 <td><a href="#"data-toggle="modal" data-target="#myModal">{{oder.code}} </a></td>
                   <div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
                   <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title">Chi Tiết Đơn Hàng</h4>
+                      <div class="modal-header" >
+                        <h4 class="modal-title">Chi Tiết Đơn Hàng &nbsp;{{dataOder.code}}</h4>
                       </div>
                       <div class="modal-body">
                         <table style="width:100%">
                           <tr>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Age</th>
+                            <th>Id</th>
+                            <th>Ngày tạo</th>
+                            <th>Số lượng sản phẩm</th>
+                            <th>Tên sản phẩm</th>
                           </tr>
-                          <tr>
-                            <td>Jill</td>
-                            <td>Smith</td>
-                            <td>50</td>
-                          </tr>
-                          <tr>
-                            <td>Eve</td>
-                            <td>Jackson</td>
-                            <td>94</td>
+                          <tr *ngFor="let item of dataOder">
+                            <td>{{item.id}}</td>
+                            <td>{{item.deliveryDate |date: "dd-MM-yyyy"}}</td>
+                            <td>{{item.numberProduct}}</td>
+                            <td>{{item.productTypeName}}</td>
                           </tr>
                         </table>
                       </div>
                       <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                       </div>
                     </div><!-- /.modal-content -->
                   </div><!-- /.modal-dialog -->

@@ -1,0 +1,24 @@
+<div class="container">
+  <h1 style="margin-top: 60px;">Edit Brand {{brandForm.value.name}}
+  </h1>
+  <form [formGroup]="brandForm" >
+  <br>
+    <mat-form-field style="margin-top: 60px;">
+      <mat-label>Tên Hãng</mat-label>
+      <input matInput placeholder="" formControlName="name" require />
+    </mat-form-field>
+  <br>
+    <mat-form-field >
+      <mat-label>Mã Code</mat-label>
+      <input matInput placeholder="" formControlName="code" require />
+    </mat-form-field>
+    <br />
+    <button
+      type="submit"
+      class="btn btn-success"
+      (click)="saveAndGotoList()"
+    >
+      Lưu và trở về danh sách
+    </button>
+  </form>
+</div>
