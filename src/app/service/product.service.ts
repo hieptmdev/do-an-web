@@ -46,7 +46,7 @@ export class ProductService {
       .pipe(catchError((err) => throwError(err)));
   }
 
-  // seach sản phẩm
+  // seach sản phẩm  trên trang người dùng nhập
   public seachAll(data: any): Observable<any> {
     const params = new HttpParams().set('name', data.seach);
     return this.http
@@ -68,7 +68,4 @@ export class ProductService {
     return this.http.post(`${this.url}`, data, {observe: 'body'}) //lenh post ma ko truyen data vao body ak
     .pipe(catchError((er)=> throwError(er)));
   }
-  //@@
-
-
 }
