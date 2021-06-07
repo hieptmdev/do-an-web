@@ -78,14 +78,13 @@ export class ProductListComponent implements OnInit {
 
   public search(): void {
     console.log(this.selectCategory);
-    const obj = {
-    //nhận vào data
+
+    // nhận vào data
     const data = {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
-    this.productsService.getFind(obj).subscribe(
-      data => {
+
     //truyền vào data
     this.productsService.getFind(data).subscribe(
       data=> {
