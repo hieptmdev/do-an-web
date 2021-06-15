@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import * as _ from 'lodash';
 import { BrandsForm } from 'src/app/model/brands-form';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
@@ -14,10 +15,9 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
 })
 export class BrandComponent implements OnInit {
   p=1;
-  brandList:any;
+  ketquatimkiem : any;
   brandId:any;
-  categorys: any;
-  brands: any;
+  seachFrom: FormsModule;
   selectCategory: any;
   selectBrand: any;
 
@@ -30,7 +30,7 @@ export class BrandComponent implements OnInit {
     private categoryService: CategoryService,
     public sharedDataService: SharedDataService,
     ) {
-
+      this.seachFrom = new FormsModule;
       this.brandForm = new BrandsForm;
       route.paramMap.subscribe(param => this.brandId=param.get('id'));
      }
@@ -61,7 +61,9 @@ export class BrandComponent implements OnInit {
      }
    );
   }
-
+  public addBrand(){
+    this.router.navigate(['admin/a-addBrand',0]);
+}
   public deletebrand(brandId: number): void {
     if (confirm("Bạn có muốn xóa")){
       this.brandService.deleteBrand(brandId).subscribe(
@@ -78,8 +80,17 @@ export class BrandComponent implements OnInit {
     }
   }
   public editBrand(brandId: any){
-    this.router.navigate(['admin/a-editbrand/', brandId])
+    this.router.navigate(['admin/a-addCate',brandId]);
 
   }
+  public sortByCode(dir: any){
+    if(dir === "up" ){
+      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['desc']);
+    }
+    else{
+      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['asc']);
+    }
+  }
+
 }
 

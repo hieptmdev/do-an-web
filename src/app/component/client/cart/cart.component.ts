@@ -1,23 +1,43 @@
 import { Component, OnInit } from '@angular/core';
+import { data } from 'jquery';
+import { CartService } from 'src/app/service/cart.service';
+import { SharedDataService } from 'src/app/service/shared-data.service';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.css']
+  styleUrls: ['./cart.component.css'],
 })
 export class CartComponent implements OnInit {
-
-  public soluong = 1;
-  public priceSell = 99;
-  constructor() { }
-
-  ngOnInit(): void {
+  // productPriceSell
+  shippingCost = 1;
+  total = 0;
+  constructor(
+    private cartService: CartService,
+    public sharedDataService: SharedDataService
+  ) {
+    if (
+      sharedDataService.cart.cartDetaills != null &&
+      sharedDataService.cart.cartDetaills.length > 0
+    ) {
+      for (let c of sharedDataService.cart.cartDetaills) {
+        this.total += c.productInfoProductPriceSell;
+      }
+    }
   }
 
-  public tangsl(): void{
-    this.soluong++;
-  }
-  public giamsl(): void{
-    this.soluong--;
+  ngOnInit(): void {}
+
+  public DeleteProduct(id: number): void {
+    this.cartService.deleCart(id).subscribe(
+      (data) => {
+        alert("xóa thành công")!
+      },
+      (error) => {
+        console.log(error);
+        alert('đã xóa');
+        //sao nó lại nhay
+      }
+    );
   }
 }

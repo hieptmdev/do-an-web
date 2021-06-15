@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { observable, Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -46,7 +46,7 @@ export class ProductService {
       .pipe(catchError((err) => throwError(err)));
   }
 
-  // seach sản phẩm  trên trang người dùng nhập
+  // seach sản phẩm  trên trang ,người dùng nhập data từ ô seach
   public seachAll(data: any): Observable<any> {
     const params = new HttpParams().set('name', data.seach);
     return this.http
@@ -54,7 +54,7 @@ export class ProductService {
       .pipe(catchError((err) => throwError(err)));
   }
 
-  // loc san pham
+  // loc san pham theo cate and brand
   public getFind(data: any): Observable<any> {
     const params = new HttpParams()
       .set('productTypeId', data.productTypeId)
@@ -64,8 +64,8 @@ export class ProductService {
       .pipe(catchError((er) => throwError(er)));
   }
 
-  public saveofupdate(data : any): Observable<any>{
-    return this.http.post(`${this.url}`, data, {observe: 'body'}) //lenh post ma ko truyen data vao body ak
+  public saveofupdate(formData : any): Observable<any>{
+    return this.http.post(`${this.url}`, formData)
     .pipe(catchError((er)=> throwError(er)));
   }
 }

@@ -1,13 +1,15 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
-import { EditComponent } from "./edit/edit.component";
-import { EditbrandComponent } from "./editbrand/editbrand.component";
-import { EditcategoryComponent } from "./editcategory/editcategory.component";
-import { EdituserComponent } from "./edituser/edituser.component";
+import { ChartComponent } from "./chart/chart.component";
+import { AddbrandComponent } from "./form/addbrand/addbrand.component";
+import { AddcategoryComponent } from "./form/addcategory/addcategory.component";
+import { AddproductComponent } from "./form/addproduct/addproduct.component";
+import { AdduserComponent } from "./form/adduser/adduser.component";
 import { HomeAdminComponent } from "./home-admin/home-admin.component";
 import { BrandComponent } from "./home/brand/brand.component";
 import { CategoryComponent } from "./home/category/category.component";
+import { OderComponent } from "./home/oder/oder.component";
 import { UseradminComponent } from "./home/useradmin/useradmin.component";
 
 const routes: Routes = [
@@ -17,10 +19,12 @@ const routes: Routes = [
     {path:'a-brand',component:BrandComponent},
     {path:'a-category',component : CategoryComponent},
     {path:'a-user', component: UseradminComponent},
-    {path:'a-edit/:id',component:EditComponent},
-    {path:'a-editbrand/:id',component:EditbrandComponent},
-    {path:'a-editcate/:id',component:EditcategoryComponent},
-    {path:'a-edituser/:id',component:EdituserComponent}
+    {path:'a-oder', component: OderComponent},
+    {path:'a-chart',component: ChartComponent},
+    {path:'a-addCate/:id',component: AddcategoryComponent},
+    {path:'a-addBrand/:id',component: AddbrandComponent},
+    {path:"a-addUser/:id",component:AdduserComponent},
+    {path:"a-addProduct/:id",component: AddproductComponent}
   ]}
 ]
 

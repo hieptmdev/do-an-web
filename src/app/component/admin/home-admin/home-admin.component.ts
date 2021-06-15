@@ -6,6 +6,7 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
 import { ActivatedRoute } from '@angular/router';
 import { AddProductForm } from 'src/app/model/addProductForm';
 import { LoginForm } from 'src/app/model/login-form';
+import { SeachForm } from 'src/app/model/seach';
 @Component({
   selector: 'app-home-admin',
   templateUrl: './home-admin.component.html',
@@ -19,7 +20,12 @@ export class HomeAdminComponent implements OnInit {
   brands: any;
   selectCategory: any;
   selectBrand: any;
+  seachFrom: SeachForm = new SeachForm();
   prodId: any;
+  testTimKiem: any;
+
+  fileAnhProduct: any;
+
   constructor(
     private route: ActivatedRoute,
     private productsService: ProductService,
@@ -70,20 +76,38 @@ export class HomeAdminComponent implements OnInit {
       this.productsService.deletePro(prodId1).subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         data => {
-          alert('đã xóa');
-          this.loadData();
+
         },
-        error => console.log(error)
+        error => {console.log(error);
+          alert('đã xóa');
+          //sao nó lại nhay
+        }
       );
 
     }
   }
+
+  //đây là chỗ mà để sử lý cái file đây, giờ mk chỉ cần chuyền tất cả thuộc tính của thg product
+  fileChangeEvent(event: Event){
+    const element = event.currentTarget as HTMLInputElement;
+    let fileList: any = element.files;
+    if (fileList) {
+      console.log("FileUpload -> files", fileList);
+    }
+    this.fileAnhProduct = fileList[0];
+}
+
   public addproducts(): void{
-    // gán từ select => form => db
     this.addProductForm.brandId = this.selectBrand;
     this.addProductForm.productTypeId = this.selectCategory;
+    const formData = new FormData();
+    formData.append('fileImg', this.addProductForm.fileImg);
+    formData.append('brandId', this.selectBrand);
+    formData.append('productTypeId', this.selectCategory);
+    // @ts-ignore
+    formData.append('name', this.addProductForm.name);
+    console.log(formData);
     this.productsService.saveofupdate(this.addProductForm).subscribe(
-      // tslint:disable-next-line:no-shadowed-variable
       data => {
         alert('Thêm Thành công!');
         this.loadData();
@@ -95,6 +119,18 @@ export class HomeAdminComponent implements OnInit {
     );
 
   }
+  public timkiem(): void{
+    this.productsService.seachAll(this.seachFrom).subscribe(
+      data => {
+          this.testTimKiem = data;
+          this.sharedDataService.productList = data;
+      },
+      (error: any) => {
+        alert('Không tìm thấy sản phẩm');
+      }
+    );
+  }
+
 
 }
 

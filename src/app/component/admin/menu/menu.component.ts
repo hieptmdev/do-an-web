@@ -22,8 +22,39 @@ export const ROUTES: RouteInfo[] = [
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponentAdmin implements OnInit {
+
+  isAdmin: any;
+  username: any;
+  name: any;
+  code: any;
+  isNv: boolean| undefined;
+  isLogin: boolean | undefined;
   menuItems: any[] | undefined;
-  constructor() { }
+  constructor() {
+    this.username = localStorage.getItem('username');
+    this.isAdmin = localStorage.getItem('isAdmin');
+    this.name = localStorage.getItem("name");
+    this.code = localStorage.getItem("code")
+    console.log(this.isAdmin);
+    if (this.username != null && localStorage.getItem('token')){
+
+        this.isLogin = true;
+
+    }
+    else {
+      this.isLogin = false;
+    }
+
+     if(this.code=="NV")
+     {
+       this.isNv= true;
+
+     }
+     else{
+       this.isNv =false;
+     }
+  }
+
 
   ngOnInit(): void {
     this.menuItems = ROUTES.filter(menuItem => menuItem);

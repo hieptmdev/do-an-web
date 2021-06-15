@@ -13,4 +13,5 @@ export class AddProductForm { // class viết cho gióng java
   endPrice: any | undefined;
   status: String | undefined;
   mieuTa: string | undefined;
+  fileImg: any;
 }

@@ -1,0 +1,46 @@
+<div style="margin-bottom: 300px">
+  <h1 class="mt-4">Quản lý đơn hàng</h1>
+  <div class="card mb-4">
+    <div class="card-body">
+      <form class="example" action="action_page.php">
+        <input type="text" placeholder="Search.." name="search" />
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+    </div>
+  </div>
+  <table id="customers" style="border-collapse: collapse">
+    <tr>
+      <th>EDIT</th>
+      <th>Id</th>
+      <th>Mã đơn hàng</th>
+      <th>Giá trị đơn hàng</th>
+      <th>Tổng số sản phẩm</th>
+      <th>Ngày giao</th>
+      <th>Địa chỉ giao hàng</th>
+      <th>Số điện thoại người nhận</th>
+      <th>Trạng thái giao hàng</th>
+    </tr>
+    <tr *ngFor="let item of sharedDataService.productList">
+      <td>
+        <mat-icon
+          style="cursor: pointer"
+          title="Nhấn vào để soạn"
+          (click)="deleteOder(item.id)"
+        >
+          clear
+        </mat-icon>
+        &nbsp;
+        <mat-icon
+          style="cursor: pointer"
+          title="Nhấn vào để soạn"
+          (click)="editOder(item.id)"
+        >
+          create
+        </mat-icon>
+      </td>
+      <td>{{ item?.id }}</td>
+      <td>{{ item?.code }}</td>
+      <td>{{ item?.numberProduct }}</td>
+    </tr>
+  </table>
+</div>

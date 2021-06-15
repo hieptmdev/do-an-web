@@ -28,16 +28,18 @@
           </ol>
           <div class="card mb-4">
             <div class="card-body">
-              DataTables is a third party plugin that is used to generate the
-              demo table below. For more information about DataTables, please
-              visit the official DataTables documentation .
+              <div class="search">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  [(ngModel)]="seachFrom.seach"
+                />
+                <!-- [(ngModel)]="seachFrom.seach" (click)="timkiem()"-->
+                <button class="fa fa-search" (click)="timkiem()"></button>
+              </div>
             </div>
           </div>
           <div class="card mb-4">
-            <div class="card-header">
-              <i class="fas fa-table me-1"></i>
-              DataTable Example
-            </div>
             <div class="card-body">
               <table id="datatablesSimple">
                 <thead>
@@ -47,6 +49,7 @@
                     <th>Giá sản phẩm</th>
                     <th>Thể loại</th>
                     <th>Hãng sản xuất</th>
+                    <th>Ảnh sản phẩm</th>
                     <th>Edit</th>
                     <th>Xóa</th>
                   </tr>
@@ -63,6 +66,7 @@
                     <td>{{ prod.priceSell }}</td>
                     <td>{{ prod.productTypeName }}</td>
                     <td>{{ prod.brandName }}</td>
+                    <td>{{prod.image}}</td>
                     <td>
                       <a  href="admin/a-edit/{{prod.id}}"
                         ><button>Edit</button></a
@@ -159,13 +163,12 @@
                       placeholder="đường dẫn ảnh"
                       [(ngModel)]="addProductForm.image"
                     /> -->
-                    <label for="file">Choose File</label>
+                    <label for="file" >Choose File</label>
                     <input type="file"
                           class="form-control"
-                           id="file"
-                           [(ngModel)]="addProductForm.image"
+                          [(ngModel)]="addProductForm.fileImg"
+                          (change)="fileChangeEvent($event)"
                            >
-<!--(change)="handleFileInput($event.target.files)"-->
                   </div>
                   <div class="col-md-12">
                     <label>Ngày nhập</label>

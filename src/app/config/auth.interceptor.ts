@@ -18,7 +18,8 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = localStorage.getItem('token');
     if (token && this.jwtHelperService.isTokenExpired(token, new Date().getTime())){
-      request = request.clone({headers: request.headers.set('Authorization', `Bearer ${token}`)});
+      request = request.clone({headers: request.headers.set('Authorization', `Bearer ${token}`)
+        .set('Content-Type', 'application/json')});
     }
     return next.handle(request);
   }

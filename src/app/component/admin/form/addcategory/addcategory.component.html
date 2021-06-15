@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 *ngIf="id === 0"> ADD NEW CATEGORY </h1>
+  <h1 *ngIf="id !== 0"> UPDATE CATEGORY </h1>
+  <form [formGroup]="cateForm">
+    <mat-form-field class="form-header">
+      <mat-label>Category Code</mat-label>
+      <input matInput placeholder="" formControlName="code" require />
+    </mat-form-field>
+    <mat-form-field class="form-header">
+      <mat-label>Category Name</mat-label>
+      <input matInput placeholder="" formControlName="name" require />
+    </mat-form-field>
+    <br />
+    <button
+      type="submit"
+      class="btn btn-success"
+      (click)="saveandGotoList()"
+    >
+    <span *ngIf="id === 0"> ADD AND GO TO LIST </span>
+    <span *ngIf="id !== 0"> UPDATE AND GO TO LIST </span>
+    </button>
+    &nbsp;
+    <button
+      type="submit"
+      class="btn btn-success"
+      (click)="back()"
+    >
+     Cancel
+    </button>
+  </form>
+</div>

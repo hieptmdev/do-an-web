@@ -6,6 +6,6 @@ import { Injectable } from '@angular/core';
 export class SharedDataService {
   public productList: any;
   public cart: any;
-
+  public cate:any;
   constructor() { }
 }

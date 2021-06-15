@@ -65,17 +65,24 @@ export class ProductListComponent implements OnInit {
       error => console.log(error)
     );
   }
+
+  //thêm vào giỏ hàng
   public addCart(prod: any): void{
-    const cartDetails: any[] = [];
-    cartDetails.push(prod);
-    this.sharedDataService.cart.cartDetails = cartDetails;
-    this.cartService.addCartDetail(this.sharedDataService.cart);
+    if(this.sharedDataService.cart){
+      prod.cartId = this.sharedDataService.cart.id;
+    }
+    this.cartService.addCartDetail(prod)?.subscribe(
+      data => {
+        this.sharedDataService.cart = data;
+      }, error => console.log(error)
+    );
   }
 
   public nextPage(): void{
 
   }
 
+  // Tìm kiếm theo bộ lọc
   public search(): void {
     console.log(this.selectCategory);
 

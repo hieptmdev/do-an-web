@@ -2,7 +2,7 @@
         <div class="col-md-12">
             <div class="product-view-top">
               <form action="" #formSearch="ngForm" (ngSubmit)="search()">
-                <div class="row">
+                <div class="row" >
                     <div class="col-md-5">
                       <select style="width:250px; height: 38px;" [(ngModel)]="selectCategory" name="category">
                         <option *ngFor="let item of categorys" [value]="item.id">{{item.name}}</option>

@@ -1,3 +1,9 @@
+.errorMessage {
+  color: red;
+}
+.form-header {
+  width: 80%;
+}
 #customers {
   font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
   border-collapse: collapse;

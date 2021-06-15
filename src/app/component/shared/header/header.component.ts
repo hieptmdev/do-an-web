@@ -39,12 +39,19 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadData();
+    console.log(this.sharedDataService.cart);
   }
 
   public loadData(): void {
     this.cateService.getCategory().subscribe(data => {
       this.category = data;
     }, error => console.log(error));
+    this.cartService.loadCartByUser()?.subscribe(
+      data => {
+        this.sharedDataService.cart = data;
+        console.log(data);
+      }, error => console.log(error)
+    );
   }
 
 

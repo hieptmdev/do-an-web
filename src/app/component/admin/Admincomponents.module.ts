@@ -13,12 +13,15 @@ import { BrandComponent } from './home/brand/brand.component';
 import { CategoryComponent } from './home/category/category.component';
 import { UseradminComponent } from './home/useradmin/useradmin.component';
 import { MatSliderModule } from '@angular/material/slider';
-import { EditComponent } from './edit/edit.component';
-import { EditbrandComponent } from './editbrand/editbrand.component';
-import { EditcategoryComponent } from './editcategory/editcategory.component';
-import { EdituserComponent } from './edituser/edituser.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ChartComponent } from './chart/chart.component';
+import {MatIconModule} from '@angular/material/icon';
+import { AddcategoryComponent } from './form/addcategory/addcategory.component';
+import { AddproductComponent } from './form/addproduct/addproduct.component';
+import { AddbrandComponent } from './form/addbrand/addbrand.component';
+import { AdduserComponent } from './form/adduser/adduser.component';
+import { AddoderComponent } from './form/addoder/addoder.component';
 @NgModule({
     imports: [
         CommonModule,
@@ -28,6 +31,7 @@ import { MatInputModule } from '@angular/material/input';
         MatFormFieldModule,
         MatInputModule,
         ReactiveFormsModule,
+        MatIconModule,
     ],
   declarations: [
     FooterComponentAdmin,
@@ -39,10 +43,12 @@ import { MatInputModule } from '@angular/material/input';
     BrandComponent,
     CategoryComponent,
     UseradminComponent,
-    EditComponent,
-    EditbrandComponent,
-    EditcategoryComponent,
-    EdituserComponent,
+    ChartComponent,
+    AddcategoryComponent,
+    AddproductComponent,
+    AddbrandComponent,
+    AdduserComponent,
+    AddoderComponent,
 
   ],
   exports: [
