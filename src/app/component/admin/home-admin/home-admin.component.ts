@@ -14,7 +14,7 @@ import { SeachForm } from 'src/app/model/seach';
 })
 export class HomeAdminComponent implements OnInit {
   addProductForm: AddProductForm;
-  fileToUpload: File | null | undefined ;
+
   p = 1;
   categorys: any;
   brands: any;
@@ -23,7 +23,7 @@ export class HomeAdminComponent implements OnInit {
   seachFrom: SeachForm = new SeachForm();
   prodId: any;
   testTimKiem: any;
-
+  fileToUpload: File | null | undefined ;
   fileAnhProduct: any;
 
   constructor(
@@ -31,7 +31,8 @@ export class HomeAdminComponent implements OnInit {
     private productsService: ProductService,
     private brandService: BrandService,
     private categoryService: CategoryService,
-    public sharedDataService: SharedDataService) {
+    public sharedDataService: SharedDataService
+    ) {
       this.addProductForm = new AddProductForm();
     }
 
@@ -52,6 +53,17 @@ export class HomeAdminComponent implements OnInit {
     error => console.log(error)
     );
   }
+  public timkiem(): void{
+    this.productsService.seachAll(this.seachFrom).subscribe(
+      data => {
+          this.testTimKiem = data;
+          this.sharedDataService.productList = data;
+      },
+    );
+    alert("Không tìm thấy sản phẩm");
+  }
+
+
   // Get Brand,cate
   public loadCategory(): void{
     this.categoryService.getCategory().subscribe(
@@ -86,8 +98,6 @@ export class HomeAdminComponent implements OnInit {
 
     }
   }
-
-  //đây là chỗ mà để sử lý cái file đây, giờ mk chỉ cần chuyền tất cả thuộc tính của thg product
   fileChangeEvent(event: Event){
     const element = event.currentTarget as HTMLInputElement;
     let fileList: any = element.files;
@@ -118,17 +128,6 @@ export class HomeAdminComponent implements OnInit {
       }
     );
 
-  }
-  public timkiem(): void{
-    this.productsService.seachAll(this.seachFrom).subscribe(
-      data => {
-          this.testTimKiem = data;
-          this.sharedDataService.productList = data;
-      },
-      (error: any) => {
-        alert('Không tìm thấy sản phẩm');
-      }
-    );
   }
 
 

@@ -29,7 +29,7 @@ export class CategoryService {
       .get(`${this.url}/${id}`, { observe: 'body' })
       .pipe(catchError((e) => throwError(e)));
   }
-  //lấy tất cả sản phẩm theo id Category
+  //Tìm thể loại theo ID
   public getCateById(id: number): Observable<any> {
     return this.http
       .get(`${this.url}/cate/${id}`, { observe: 'body' })

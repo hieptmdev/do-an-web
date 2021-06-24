@@ -1,23 +1,26 @@
 <div class="container">
-  <h1 *ngIf="id === 0"> ADD NEW CATEGORY </h1>
-  <h1 *ngIf="id !== 0"> UPDATE CATEGORY </h1>
+  <h1 *ngIf="id == 0"> Thêm hãng sản xuất </h1>
+  <h1 *ngIf="id != 0"> Cập nhập hãng ID:{{id}} </h1>
   <form [formGroup]="brandForm">
-    <mat-form-field class="form-header">
-      <mat-label>Category Code</mat-label>
-      <input matInput placeholder="" formControlName="code" require />
-    </mat-form-field>
-    <mat-form-field class="form-header">
-      <mat-label>Category Name</mat-label>
-      <input matInput placeholder="" formControlName="name" require />
+    <mat-form-field appearance="outline">
+      <mat-label>Mã code</mat-label>
+      <input matInput placeholder="Nhập mã code" formControlName="code" require />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
     </mat-form-field>
     <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Tên hãng</mat-label>
+      <input matInput placeholder="Nhập tên hãng" formControlName="name" require />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br/>
     <button
       type="submit"
       class="btn btn-success"
       (click)="saveandGotoList()"
     >
-    <span *ngIf="id === 0"> ADD AND GO TO LIST </span>
-    <span *ngIf="id !== 0"> UPDATE AND GO TO LIST </span>
+    <span *ngIf="id == 0"> Thêm mới & trở về danh sách </span>
+    <span *ngIf="id != 0"> Cập nhập & trở về danh sách </span>
     </button>
     &nbsp;
     <button

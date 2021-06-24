@@ -56,7 +56,7 @@ export class BrandComponent implements OnInit {
        console.log(data)
      },
      ( error: any) => {
-       alert("Thất bại");
+       alert("bạn không có quyền");
        console.log(error);
      }
    );
@@ -76,11 +76,11 @@ export class BrandComponent implements OnInit {
 
     }
     else{
-      alert("Delete Fail")
+      alert("Bạn không có quyền")
     }
   }
   public editBrand(brandId: any){
-    this.router.navigate(['admin/a-addCate',brandId]);
+    this.router.navigate(['admin/a-addBrand',brandId]);
 
   }
   public sortByCode(dir: any){

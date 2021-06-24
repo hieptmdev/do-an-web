@@ -11,6 +11,7 @@
                   <th>Tên sản phẩm</th>
                   <th>Giá Tiền</th>
                   <th>Số Lượng</th>
+                  <th>Màu sản phẩm</th>
                   <th>Tổng Tiền</th>
                   <th>Xóa</th>
                 </tr>
@@ -29,6 +30,8 @@
                   <td>{{ item.productInfoProductPriceSell }}</td>
                   <!-- số lượng -->
                   <td>{{ item.numberPro }}</td>
+                  <!-- màu -->
+                  <td>{{item.productInfoColorName}}</td>
                   <!-- tổng tiền của 1 sản phẩm-->
                   <td >
                     {{item.productInfoProductPriceSell * item.numberPro}}

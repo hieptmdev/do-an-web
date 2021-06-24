@@ -11,6 +11,7 @@ import {CategoryService} from 'src/app/service/category.service';
 export class AddcategoryComponent implements OnInit {
   public id = 0;
   public category: any;
+  public name:any;
   public cateForm = new FormGroup({
     id: new FormControl(''),
     name: new FormControl(''),
@@ -44,40 +45,29 @@ export class AddcategoryComponent implements OnInit {
       console.log('data Cate', data);
     });
   }
-
-  private dataTest(): any {
-    this.categorySevice.getCategory().subscribe(data => {
-      this.category = data;
-    });
-  }
-
   // tslint:disable-next-line:typedef
   public saveandGotoList() {
-    debugger
     if (this.id > 0) {
       this.categorySevice.saveOfupdate(this.createNewData()).subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         data => {
           console.log('DataFormCategory', data);
-          alert('Update category success');
+          alert('Cập  nhập thành công thể loại');
           this.route.navigate(['admin/a-category']);
         },
         err => console.log(err)
       );
-    } else if (this.id = 0) {
-      this.categorySevice.update(this.createNewData()).subscribe(
+    } else{
+      this.categorySevice.saveOfupdate(this.createNewData()).subscribe(
         data => {
           console.log('DataFormCategory', data);
-          alert('Add category success');
+          alert('Thêm mới thành công thể loại');
           this.route.navigate(['admin/a-category']);
         },
         err => console.log(err)
       );
     }
-
-
   }
-
   private createNewData() {
     const addCateObjec = {};
     if (this.id) {

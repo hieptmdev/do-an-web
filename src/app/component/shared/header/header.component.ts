@@ -29,7 +29,7 @@ export class HeaderComponent implements OnInit {
     this.isAdmin = localStorage.getItem('isAdmin');
     this.name = localStorage.getItem("name");
     this.code = localStorage.getItem("code")
-    console.log(this.isAdmin);
+    console.log("admin :",this.isAdmin);
     if (this.username != null && localStorage.getItem('token') != null){
       this.isLogin = true;
     }else {

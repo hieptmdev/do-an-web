@@ -8,19 +8,12 @@
             <h2>Billing Address</h2>
             <div class="row">
               <div class="col-md-6">
-                <label>First Name</label>
+                <label>Name</label>
                 <input
                   class="form-control"
                   type="text"
                   placeholder="First Name"
-                />
-              </div>
-              <div class="col-md-6">
-                <label>Last Name</label>
-                <input
-                  class="form-control"
-                  type="text"
-                  placeholder="Last Name"
+                  [(ngModel)]="usernamKH"
                 />
               </div>
               <div class="col-md-6">
@@ -33,16 +26,18 @@
                   class="form-control"
                   type="text"
                   placeholder="Mobile No"
+                  [(ngModel)]="mobilephone"
                 />
               </div>
               <div class="col-md-12">
                 <label>Address</label>
-                <input class="form-control" type="text" placeholder="Address" />
+                <input class="form-control" type="text" placeholder="Address" [(ngModel)]="address"/>
               </div>
               <div class="col-md-12">
                 <button
                   type="submit"
                   style="background-color: green; color: wheat; width: 190px"
+                  (click)="checkoutoff()"
                 >
                   Đặt hàng
                 </button>
@@ -120,7 +115,7 @@
             <h1>Cart Total</h1>
             <p>Sub Total<span>{{total}}</span></p>
             <p>Shipping Cost<span>${{shippingCost}}</span></p>
-            <h2>Grand Total<span>${{(total + shippingCost)}}</span></h2>
+            <h2>Grand Total<span>${{(total)}}</span></h2>
             <div>
               <button type="submit" (click)="checkout()">Thanh toán trực tuyến</button>
             </div>

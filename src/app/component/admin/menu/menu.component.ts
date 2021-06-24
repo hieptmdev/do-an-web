@@ -27,15 +27,15 @@ export class MenuComponentAdmin implements OnInit {
   username: any;
   name: any;
   code: any;
-  isNv: boolean| undefined;
+  kiemtracode: boolean| undefined;
   isLogin: boolean | undefined;
   menuItems: any[] | undefined;
   constructor() {
     this.username = localStorage.getItem('username');
     this.isAdmin = localStorage.getItem('isAdmin');
     this.name = localStorage.getItem("name");
-    this.code = localStorage.getItem("code")
-    console.log(this.isAdmin);
+    this.code = localStorage.getItem("code"); // này nó trả ra string nhé
+    //kiểm tra đăng nhập
     if (this.username != null && localStorage.getItem('token')){
 
         this.isLogin = true;
@@ -45,13 +45,14 @@ export class MenuComponentAdmin implements OnInit {
       this.isLogin = false;
     }
 
-     if(this.code=="NV")
+    // kiểm tra nhân viên, khi true thì nó là admin(0-Khách 1-Nhân viên 2-Admin)
+     if(this.code === '2' && this.isAdmin === 'true') // đay là or mà cha nội @@
      {
-       this.isNv= true;
+       this.kiemtracode = true;
 
      }
      else{
-       this.isNv =false;
+       this.kiemtracode = false;
      }
   }
 

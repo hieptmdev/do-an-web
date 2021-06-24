@@ -21,7 +21,7 @@ export class CartComponent implements OnInit {
       sharedDataService.cart.cartDetaills.length > 0
     ) {
       for (let c of sharedDataService.cart.cartDetaills) {
-        this.total += c.productInfoProductPriceSell;
+        this.total += c.productInfoProductPriceSell*c.numberPro;
       }
     }
   }

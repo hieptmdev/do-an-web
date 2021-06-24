@@ -37,13 +37,13 @@
           </nav>
         </div>
         <a
+        *ngIf="kiemtracode"
           class="nav-link collapsed"
           href="#"
           data-bs-toggle="collapse"
           data-bs-target="#collapsePages"
           aria-expanded="false"
           aria-controls="collapsePages"
-          *ngIf="!isNv"
         >
           <div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
           Quản Lý Nhân Viên

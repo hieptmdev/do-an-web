@@ -66,7 +66,13 @@
                     <td>{{ prod.priceSell }}</td>
                     <td>{{ prod.productTypeName }}</td>
                     <td>{{ prod.brandName }}</td>
-                    <td>{{prod.image}}</td>
+                    <td>
+                      <div class="img">
+                        <a href="#"
+                          ><img src="{{ prod.image }}" alt="Image"
+                        /></a>
+                      </div>
+                    </td>
                     <td>
                       <a  href="admin/a-edit/{{prod.id}}"
                         ><button>Edit</button></a
@@ -156,13 +162,6 @@
                     />
                   </div>
                   <div class="col-md-12">
-                    <!-- <label>Ảnh</label>
-                    <input
-                      class="form-control"
-                      type="text"
-                      placeholder="đường dẫn ảnh"
-                      [(ngModel)]="addProductForm.image"
-                    /> -->
                     <label for="file" >Choose File</label>
                     <input type="file"
                           class="form-control"

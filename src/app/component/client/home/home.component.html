@@ -147,22 +147,6 @@
   </div>
 </div>
 <!-- Category End-->
-
-<!-- Call to Action Start -->
-<!-- <div class="call-to-action">
-  <div class="container-fluid">
-      <div class="row align-items-center">
-          <div class="col-md-6">
-              <h1>Hotline</h1>
-          </div>
-          <div class="col-md-6">
-              <a href="tel:0968758298">+089-687-5898</a>
-          </div>
-      </div>
-  </div>
-</div> -->
-<!-- Call to Action End -->
-
 <!-- Sản Phẩm hot -->
 <div class="featured-product product">
   <div class="container-fluid">
@@ -187,10 +171,10 @@
                       <img src="{{proNew.image}}" alt="Product Image">
                      </a>
                   </div>
-                  <div class="product-price">
-                      <h3><span>$</span>{{proNew.priceSell}}</h3>
-                      <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                  </div>
+                  <div class="product-price" style="background: rgb(231, 185, 185);">
+                    <span style="color: black;"><span>$</span>{{proNew.priceSell}}</span>
+                    <button class="btn" (click)="addCart(productNew)"><i class="fa fa-shopping-cart"></i>AddToCart</button>
+                </div>
               </div>
           </div>
           <div class="col-md-12" style="padding-top: 20px">
@@ -206,7 +190,7 @@
   <div class="container-fluid">
       <div class="section-header">
           <h1>
-            Sản Phẩm Hot
+            Sản Phẩm Giảm Giá
           </h1>
       </div>
       <div class="row align-items-center product-slider product-slider-4">
@@ -227,10 +211,10 @@
                       <img src="{{proSale.image}}" alt="Product Image">
                      </a>
                   </div>
-                  <div class="product-price">
-                      <h3><span>$</span>{{proSale.priceSell}}</h3>
-                      <a class="btn" href=""><i class="fa fa-shopping-cart"></i>Buy Now</a>
-                  </div>
+                  <div class="product-price" style="background: rgb(231, 185, 185);">
+                    <span style="color: black;"><span>$</span>{{proSale.priceSell}}</span>
+                    <button class="btn" (click)="addCart(productSale)"><i class="fa fa-shopping-cart"></i>AddToCart</button>
+                </div>
               </div>
           </div>
           <div class="col-md-12" style="padding-top: 20px">

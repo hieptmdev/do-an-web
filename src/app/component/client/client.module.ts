@@ -5,7 +5,7 @@ import { ClienRoutingModule } from './client-routing.module';
 import { HeaderComponent } from '../shared/header/header.component';
 import { FooterComponent } from '../shared/footer/footer.component';
 import { BrandSlideComponent } from '../shared/brand-slide/brand-slide.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -24,7 +24,8 @@ import { HomeComponent } from './home/home.component';
     CartComponent,
     CheckoutComponent,
     LoginRegisterComponent,
-    OrderComponent
+    OrderComponent,
+
   ],
     imports: [
         CommonModule,
@@ -32,6 +33,7 @@ import { HomeComponent } from './home/home.component';
         FormsModule,
         SlickCarouselModule,
         NgxPaginationModule,
+        ReactiveFormsModule,
     ]
 })
 export class ClientModule { }

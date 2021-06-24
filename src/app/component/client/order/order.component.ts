@@ -8,7 +8,7 @@ import { OrderService } from 'src/app/service/order.service';
   styleUrls: ['./order.component.css']
 })
 export class OrderComponent implements OnInit {
-
+  dataDetail: any;
   dataOder : any;
   constructor(private orderService : OrderService) { }
 
@@ -20,6 +20,15 @@ export class OrderComponent implements OnInit {
         this.dataOder = data;
     },
     err => console.log(err)
+    )
+  }
+
+  public getDetailByCode(code: any){
+    this.orderService.getOderdetailByCode(code).subscribe(
+      data=>{
+        this.dataDetail = data;
+      },
+      err => console.log(err)
     )
   }
 

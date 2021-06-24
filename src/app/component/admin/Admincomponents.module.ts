@@ -22,6 +22,9 @@ import { AddproductComponent } from './form/addproduct/addproduct.component';
 import { AddbrandComponent } from './form/addbrand/addbrand.component';
 import { AdduserComponent } from './form/adduser/adduser.component';
 import { AddoderComponent } from './form/addoder/addoder.component';
+import { ProductComponent } from './home/product/product.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatToolbarModule} from '@angular/material/toolbar';
 @NgModule({
     imports: [
         CommonModule,
@@ -32,6 +35,8 @@ import { AddoderComponent } from './form/addoder/addoder.component';
         MatInputModule,
         ReactiveFormsModule,
         MatIconModule,
+        MatSelectModule,
+        MatToolbarModule,
     ],
   declarations: [
     FooterComponentAdmin,
@@ -49,6 +54,7 @@ import { AddoderComponent } from './form/addoder/addoder.component';
     AddbrandComponent,
     AdduserComponent,
     AddoderComponent,
+    ProductComponent,
 
   ],
   exports: [

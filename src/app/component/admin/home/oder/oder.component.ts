@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { data } from 'jquery';
 import * as _ from 'lodash';
 import { BrandsForm } from 'src/app/model/brands-form';
+import { SeachForm } from 'src/app/model/seach';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { OrderService } from 'src/app/service/order.service';
@@ -14,8 +16,10 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
   styleUrls: ['./oder.component.css']
 })
 export class OderComponent implements OnInit {
-
+  seachFrom: SeachForm = new SeachForm();
+  search: any;
   p = 1;
+  valueSeach: any;
   a: any;
   odersList: any;
   constructor(
@@ -51,17 +55,27 @@ export class OderComponent implements OnInit {
     }
   }
   public editOder(idOder: any){
-
     this.route.navigate(['admin/a-addOder',idOder]);
-}
-
-  public sortByCode(dir: any){
-    if(dir === "up" ){
-      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['desc']);
-    }
-    else{
-      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['asc']);
-    }
+  }
+  dataDetail: any;
+  public getDetailByCode(code: any){
+    this.oderService.getOderdetailByCode(code).subscribe(
+      data=>{
+        this.dataDetail = data;
+      },
+      err => console.log(err)
+    )
+  }
+  public seach(): void{
+    console.log(this.search);
+    this.oderService.seach(this.search).subscribe(
+      data=>{
+        this.sharedDataService.productList = data;
+      },
+      error => {console.log(error);
+        alert('Không tìm thấy sản phẩm');
+      }
+    );
   }
 }
 

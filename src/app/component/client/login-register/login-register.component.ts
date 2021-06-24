@@ -45,6 +45,7 @@ export class LoginRegisterComponent implements OnInit {
         const username = this.jwtService.decodeToken(token).sub;
         localStorage.setItem('token', token);
         localStorage.setItem('username', username);
+        localStorage.setItem("idUser",this.jwtService.decodeToken(token).id);
         localStorage.setItem('isAdmin', this.jwtService.decodeToken(token).admin_account);
         localStorage.setItem('name',this.jwtService.decodeToken(token).name);
         localStorage.setItem('code',this.jwtService.decodeToken(token).role);

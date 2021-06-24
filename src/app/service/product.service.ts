@@ -68,4 +68,13 @@ export class ProductService {
     return this.http.post(`${this.url}`, formData)
     .pipe(catchError((er)=> throwError(er)));
   }
+
+  //lấy chi tiết theo mã code//
+  public getProductdetailByid(id: any): Observable<any> {
+    const params = new HttpParams().set('id',id)
+    return this.http
+      .get(`${this.url}/codename`, { observe: 'body', params })
+      .pipe(catchError((err) => throwError(err)));
+  }
+
 }

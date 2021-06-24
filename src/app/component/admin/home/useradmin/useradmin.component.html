@@ -1,80 +1,81 @@
-<style>
-  table, th,tr, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th,tr, td {
-    padding: 5px;
-    text-align: left;
-  }
-  </style>
-
-              <!-- ------- -->
-
-<div class="row"></div>
-<div class="container" style="background: #f3f3f3 !important;">
-  <div class="row">
-    <div class="col-sm">
-      <main>
-        <div class="container-fluid px-4">
-            <h1 class="mt-4">User</h1>
-            <div class="card mb-4">
-                <div class="card-body">
-                    DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the
-                   official DataTables documentation
-                </div>
-            </div>
-            <div class="card mb-4">
-                <div class="card-header">
-                    <i class="fas fa-table me-1"></i>
-                    DataTable Example
-                </div>
-                <div class="card-body">
-                    <table id="datatablesSimple">
-                        <thead>
-                          <tr >
-                            <th>ID</th>
-                            <th>Họ Tên</th>
-                            <th>code</th>
-                            <th>Ngày Sinh</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Địa chỉ</th>
-                            <th>Chức Vụ</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr *ngFor="let b of users| paginate: { itemsPerPage: 12, currentPage: p }">
-                            <td>{{b.id}}</td>
-                            <td>{{b.name}}</td>
-                            <td>{{b.code}}</td>
-                            <td>{{b.dob}}</td>
-                            <td>{{b.email}}</td>
-                            <td>{{b.phoneNumber}}</td>
-                            <td>{{b.address}}</td>
-                            <td>{{b.isAdminAccount}}</td>
-                          </tr>
-                        </tbody>
-                    </table>
-                    <div class="col-md-12" style="padding-top: 20px">
-                      <pagination-controls (pageChange)="p = $event"></pagination-controls>
-                    </div>
-                  </div>
-                </div>
-            </div>
-      </main>
+<div class="row" style="margin-bottom: 300px">
+  <div class="col-12 col-md-12">
+    <h1>Quản lý User</h1>
+  </div>
+  <div class="col-6 col-md-6">
+    <button
+      style="margin-left: 14px; height: 50px; margin-bottom: 20px; width: 250px"
+      (click)="addUser()"
+    >
+      Thêm User
+    </button>
+  </div>
+  <div class="col-6 col-md-6">
+    <div class="search">
+      <input
+        style="height: 40px; width: 250px"
+        type="text"
+        placeholder="Search"
+        [(ngModel)]="seachFrom.seach"
+      />
+      <button
+        class="fa fa-search"
+        style="height: 40px; width: 40px"
+        (click)="timkiem()"
+      ></button>
     </div>
-    <div class="col-sm">
-     <h1>Edit Brands</h1>
-      <form action="">
-        <div class="col-md-5 col-sm-12 form-group">
-        <label for="">Hãng sản xuất</label>
-        <input type="text" class="form-control" placeholder="Nhập tên hãng sản xuất">
-        <label for="macode">Mã Code  </label>
-        <input type="text" class="form-control" placeholder="Nhập mã code"/>
-        <button class="btn btn-primary"> Update </button>
-      </div>
-      </form>
-    </div>
+  </div>
+
+  <div class="col-12 col-md-12">
+    <table id="customers" style="border-collapse: collapse">
+      <tr>
+        <th>EDIT</th>
+        <th>Id</th>
+        <th>UserName</th>
+        <th>code(quyền)</th>
+        <th>Ngày sinh</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Địa chỉ</th>
+        <th>Chức vụ(isAdmin)</th>
+        <th>ten dang nhap</th>
+      </tr>
+      <tr
+        *ngFor="
+          let user of sharedDataService.productList
+            | paginate: { itemsPerPage: 12, currentPage: p }
+        "
+      >
+        <td>
+          <mat-icon
+            style="cursor: pointer"
+            title="Nhấn vào để soạn"
+            (click)="deleteUser(user.id)"
+          >
+            clear
+          </mat-icon>
+          &nbsp;
+          <mat-icon
+            style="cursor: pointer"
+            title="Nhấn vào để soạn"
+            (click)="editUser(user.id)"
+          >
+            create
+          </mat-icon>
+        </td>
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.codeString }}</td>
+        <td>{{ user.dob | date:'yyyy-MM-dd' }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.address }}</td>
+        <td>{{ user.isAdminAccount }}</td>
+        <td>{{user.username}}</td>
+      </tr>
+    </table>
+  </div>
+  <div class="col-md-12" style="padding-top: 20px">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
   </div>
 </div>

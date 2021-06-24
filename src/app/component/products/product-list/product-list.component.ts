@@ -68,14 +68,21 @@ export class ProductListComponent implements OnInit {
 
   //thêm vào giỏ hàng
   public addCart(prod: any): void{
-    if(this.sharedDataService.cart){
-      prod.cartId = this.sharedDataService.cart.id;
+    debugger
+    if(prod.coloList && prod.coloList.length > 0){
+      if(this.sharedDataService.cart){
+        prod.cartId = this.sharedDataService.cart.id;
+      }
+      this.cartService.addCartDetail(prod)?.subscribe(
+        data => {
+          this.sharedDataService.cart = data;
+        }, error => console.log(error)
+      );
+      alert("Đã thêm vào giỏ")
+    } else {
+      alert("Sản phẩm đã hết hàng!");
     }
-    this.cartService.addCartDetail(prod)?.subscribe(
-      data => {
-        this.sharedDataService.cart = data;
-      }, error => console.log(error)
-    );
+
   }
 
   public nextPage(): void{
@@ -91,7 +98,6 @@ export class ProductListComponent implements OnInit {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
-
     //truyền vào data
     this.productsService.getFind(data).subscribe(
       data=> {

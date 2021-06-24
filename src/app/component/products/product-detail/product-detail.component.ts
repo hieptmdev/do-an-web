@@ -52,7 +52,6 @@ export class ProductDetailComponent implements OnInit {
       return;
     }
     this.quantity += data;
-
   }
 
   addCart(): void {
@@ -65,6 +64,7 @@ export class ProductDetailComponent implements OnInit {
         this.sharedDataService.cart = data;
       }, error => console.log(error)
     );
+    alert("Đã thêm vào giỏ")
   }
 
   buyNow(): void {
