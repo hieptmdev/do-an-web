@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { data } from 'jquery';
 import * as _ from 'lodash';
 import { SeachForm } from 'src/app/model/seach';
 import { ProductService } from 'src/app/service/product.service';
+import { ProductinfoService } from 'src/app/service/productinfo.service';
 import { SharedDataService } from 'src/app/service/shared-data.service';
 
 @Component({
@@ -12,18 +14,31 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
 })
 export class ProductComponent implements OnInit {
   p=1;
+  colorSelect: any;
+  numberProduct: any;
+  numberProductInfo: any;
+  public colors: any;
+  selectcolor: any;
   seachFrom: SeachForm = new SeachForm();
   testTimKiem:any;
   constructor(
     private router: Router,
     private productsService: ProductService,
-    public sharedDataService: SharedDataService
+    public sharedDataService: SharedDataService,
+    private productInfoService: ProductinfoService
   ) { }
 
   ngOnInit(): void {
     this.loadData();
+    this.loadColor();
   }
-
+  public loadColor(): void{
+    this.productsService.getcolor().subscribe(
+      data => {
+        this.colors = data;
+      }
+    )
+  }
   public loadData(): void{
     this.productsService.getAll().subscribe(data => {
        this.sharedDataService.productList = data;
@@ -31,6 +46,31 @@ export class ProductComponent implements OnInit {
     error => console.log(error)
     );
   }
+
+  //chưa viết :v
+  public saveProductInfo(prodId: any): void{
+    const formData = {
+      productId: prodId,
+      numberProduct: this.numberProduct,
+      colorId: this.colorSelect
+    }
+    this.productInfoService.saveofupdate(formData).subscribe(
+      data=>{
+        console.log(data);
+        alert("Thêm chi tiết sản phẩm thành công")
+      }
+    )
+  }
+
+  public updateProductInfo(prodInfo: any): void{
+    this.productInfoService.saveofupdate(prodInfo).subscribe(
+      data=>{
+        console.log(data);
+        alert("Cập nhật chi tiết sản phẩm thành công")
+      }
+    )
+  }
+
   public timkiem(): void{
     this.productsService.seachAll(this.seachFrom).subscribe(
       data => {

@@ -44,9 +44,7 @@ export class MenuComponentAdmin implements OnInit {
     else {
       this.isLogin = false;
     }
-
-    // kiểm tra nhân viên, khi true thì nó là admin(0-Khách 1-Nhân viên 2-Admin)
-     if(this.code === '2' && this.isAdmin === 'true') // đay là or mà cha nội @@
+     if(this.code === '2' && this.isAdmin === 'true')
      {
        this.kiemtracode = true;
 

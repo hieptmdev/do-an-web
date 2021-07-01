@@ -14,7 +14,7 @@ const routes: Routes = [
     {path: 'login-register', component: LoginRegisterComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'cart', component: CartComponent}, { path: 'order', component: OrderComponent},
-    {path: 'products', loadChildren: () => import('../products/products.module').then(m => m.ProductsModule)}
+    {path: 'products', loadChildren: () => import('../products/products.module').then(m => m.ProductsModule)},
   ]}
 ]
 

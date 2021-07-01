@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { data } from 'jquery';
 import { SeachForm } from 'src/app/model/seach';
 import { SharedDataService } from 'src/app/service/shared-data.service';
 import { UserService } from 'src/app/service/user.service';
@@ -9,12 +11,13 @@ import { UserService } from 'src/app/service/user.service';
   styleUrls: ['./useradmin.component.css']
 })
 export class UseradminComponent implements OnInit {
-  p=1;
+  p = 1;
   seachFrom: SeachForm = new SeachForm();
   users: any;
   constructor(
     private userService: UserService,
     public sharedDataService: SharedDataService,
+    private router: Router,
 
   ) { }
 
@@ -22,25 +25,36 @@ export class UseradminComponent implements OnInit {
     this.loadUsers();
   }
 
-  public loadUsers(){
-    this.userService.getAllUser().subscribe(data =>
-      {
-        this.sharedDataService.productList = data
-      },
+  public loadUsers() {
+    this.userService.getAllUser().subscribe(data => {
+      this.sharedDataService.productList = data
+    },
       error => console.log(error))
   }
 
-  public deleteUser(id : any): void{
+  public deleteUser(id: any): void {
+    if (confirm('Bạn có muốn xóa')){
+      this.userService.deleteUser(id).subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
+        data => {
+          alert("Delete succsess")
+          this.loadUsers();
+        },
+        error => {console.log(error);
+                  alert('Delete Failed');
+        }
+      );
+
+    }
+  }
+  public timkiem(): void {
 
   }
-  public timkiem(): void{
-
+  public addUser(): void {
+    this.router.navigate(['admin/a-addUser', 0]);
   }
-  public addUser(): void{
-
-  }
-  public editUser(id: any):void{
-
+  public editUser(id: any): void {
+    this.router.navigate(['admin/a-addUser', id]);
   }
 
 }

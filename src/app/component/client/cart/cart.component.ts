@@ -29,15 +29,22 @@ export class CartComponent implements OnInit {
   ngOnInit(): void {}
 
   public DeleteProduct(id: number): void {
-    this.cartService.deleCart(id).subscribe(
-      (data) => {
-        alert("xóa thành công")!
-      },
-      (error) => {
-        console.log(error);
-        alert('đã xóa');
-        //sao nó lại nhay
-      }
-    );
+    if (confirm("Bạn có muốn xóa")) {
+      this.cartService.deleCart(id).subscribe(
+        (data) => {
+          this.sharedDataService.cart.cartDetaills = this.sharedDataService.cart.cartDetaills.filter((item : any) => item.id !== id);
+          alert("xóa thành công")!
+        },
+        (error) => {
+          console.log(error);
+          alert('Delete Failed');
+          //sao nó lại nhay
+        }
+      );
+    }
+    else {
+      alert("Bạn không có quyền")
+    }
+
   }
 }

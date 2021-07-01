@@ -12,7 +12,6 @@ import { OderComponent } from './home/oder/oder.component';
 import { BrandComponent } from './home/brand/brand.component';
 import { CategoryComponent } from './home/category/category.component';
 import { UseradminComponent } from './home/useradmin/useradmin.component';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ChartComponent } from './chart/chart.component';
@@ -25,19 +24,25 @@ import { AddoderComponent } from './form/addoder/addoder.component';
 import { ProductComponent } from './home/product/product.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatRadioModule} from '@angular/material/radio';
+//import {ChartModule} from 'primeng/chart';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
-    imports: [
-        CommonModule,
-        AdminRoutingModule,
-        NgxPaginationModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        ReactiveFormsModule,
-        MatIconModule,
-        MatSelectModule,
-        MatToolbarModule,
-    ],
+  imports: [
+    CommonModule,
+    AdminRoutingModule,
+    NgxPaginationModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    MatIconModule,
+    MatSelectModule,
+    MatToolbarModule,
+    MatRadioModule,
+    ChartsModule
+    //ChartModule
+  ],
   declarations: [
     FooterComponentAdmin,
     HeaderComponentAdmin,

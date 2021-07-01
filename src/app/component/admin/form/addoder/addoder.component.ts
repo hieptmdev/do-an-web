@@ -18,7 +18,7 @@ export class AddoderComponent implements OnInit {
 
   // co 3 trang thai set cung the nay cx dc
   status: status[] = [
-    {value: 0, viewValue: 'Đã lên đơn'},
+    {value: 0, viewValue: 'Đang lên đơn'},
     {value: 1, viewValue: 'Đang giao hàng'},
     {value: 2, viewValue: 'Hoàn thành'}
   ];

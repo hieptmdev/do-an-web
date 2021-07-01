@@ -45,6 +45,7 @@
         <th>Thể loại</th>
         <th>Hãng sản xuất</th>
         <th>Ảnh sản phẩm</th>
+        <th>Edit chi tiết</th>
       </tr>
       <tr
         *ngFor="
@@ -82,10 +83,28 @@
                   <tr>
                     <th>số lượng</th>
                     <th>Màu sản phẩm</th>
+                    <th>Edit</th>
                   </tr>
                   <tr *ngFor="let item of dataDetail.productInfoList">
-                    <td>{{item.numberProduct}}</td>
+                    <td><input type="number" [(ngModel)]="item.numberProduct"/></td>
                     <td>{{item.colorName}}</td>
+                    <td>
+                      <mat-icon
+                        style="cursor: pointer"
+                        title="Nhấn vào để soạn"
+                        (click)="deleteProduct(prod.id)"
+                      >
+                        clear
+                      </mat-icon>
+                      &nbsp;
+                      <mat-icon
+                        style="cursor: pointer"
+                        title="Update chi tiết"
+                        (click)="updateProductInfo(item)"
+                      >
+                        create
+                      </mat-icon>
+                    </td>
                   </tr>
                 </table>
               </div>
@@ -102,6 +121,39 @@
         <td>
           <div class="img">
             <img style="height: 40px;" src="{{ prod.image }}" alt="Image" />
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Edit
+          </button>
+          <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Thêm chi tiết sản phẩm</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <div class="col-6">
+                    <label>Màu</label>
+                    <select class="form-control" name="color" [(ngModel)]="colorSelect">
+                      <option *ngFor="let c of colors" [value]="c.id">{{c.name}}</option>
+                    </select>
+                  </div>
+                  <div class="col-6">
+                    <label>Số lượng sản phẩm</label>
+                    <input type="number" [(ngModel)]="numberProduct">
+                  </div>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="saveProductInfo(prod.id)">Save</button>
+                </div>
+              </div>
+            </div>
           </div>
         </td>
       </tr>

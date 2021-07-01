@@ -48,15 +48,21 @@ export class AddbrandComponent implements OnInit {
           alert('Cập nhập thành công hãng sản xuất');
           this.route.navigate(['admin/a-brand']);
         },
-        err => console.log(err)
+        error => {
+          console.log(error);
+          alert('Update Failed');
+        }
       );
     } else {
       this.brandService.saveOfupdate(this.createNewData()).subscribe(
         data => {
-          alert('thêm mới thành công hãng sản xuấ');
+          alert('thêm mới thành công hãng sản xuất');
           this.route.navigate(['admin/a-brand']);
         },
-        err => console.log(err)
+        error => {
+          console.log(error);
+          alert('Add Failed');
+        }
       );
     }
   }

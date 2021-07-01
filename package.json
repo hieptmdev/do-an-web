@@ -24,8 +24,8 @@
     "@auth0/angular-jwt": "^5.0.2",
     "angular-bootstrap-md": "^11.1.0",
     "angular-utils-pagination": "^0.11.1",
-    "bootstrap": "^5.0.1",
-    "chart.js": "^3.3.2",
+    "bootstrap": "^5.0.2",
+    "chart.js": "^2.9.4",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
     "lodash": "^4.17.21",
@@ -37,6 +37,7 @@
     "rxjs": "~6.6.0",
     "slick-carousel": "^1.8.1",
     "tslib": "^2.0.0",
+    "uninstall": "0.0.0",
     "zone.js": "~0.11.3"
   },
   "devDependencies": {

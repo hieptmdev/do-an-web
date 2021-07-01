@@ -14,9 +14,9 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
   styleUrls: ['./brand.component.css']
 })
 export class BrandComponent implements OnInit {
-  p=1;
-  ketquatimkiem : any;
-  brandId:any;
+  p = 1;
+  ketquatimkiem: any;
+  brandId: any;
   seachFrom: FormsModule;
   selectCategory: any;
   selectBrand: any;
@@ -29,11 +29,11 @@ export class BrandComponent implements OnInit {
     private brandService: BrandService,
     private categoryService: CategoryService,
     public sharedDataService: SharedDataService,
-    ) {
-      this.seachFrom = new FormsModule;
-      this.brandForm = new BrandsForm;
-      route.paramMap.subscribe(param => this.brandId=param.get('id'));
-     }
+  ) {
+    this.seachFrom = new FormsModule;
+    this.brandForm = new BrandsForm;
+    route.paramMap.subscribe(param => this.brandId = param.get('id'));
+  }
 
   ngOnInit(): void {
     this.loadBrands();
@@ -48,47 +48,36 @@ export class BrandComponent implements OnInit {
     );
   }
 
-
-  public save(){
-    this.brandService.saveOfupdate(this.brandForm).subscribe(data =>
-      {
-       alert("Thêm Thành công!");
-       console.log(data)
-     },
-     ( error: any) => {
-       alert("bạn không có quyền");
-       console.log(error);
-     }
-   );
+  public addBrand() {
+    this.router.navigate(['admin/a-addBrand', 0]);
   }
-  public addBrand(){
-    this.router.navigate(['admin/a-addBrand',0]);
-}
   public deletebrand(brandId: number): void {
-    if (confirm("Bạn có muốn xóa")){
+    if (confirm("Bạn có muốn xóa")) {
       this.brandService.deleteBrand(brandId).subscribe(
         data => {
           alert("Delete success");
           this.loadBrands();
         },
-        error => console.log(error)
+        error => {
+          console.log(error);
+          alert('Delete Failed');
+        }
       );
-
     }
-    else{
+    else {
       alert("Bạn không có quyền")
     }
   }
-  public editBrand(brandId: any){
-    this.router.navigate(['admin/a-addBrand',brandId]);
+  public editBrand(brandId: any) {
+    this.router.navigate(['admin/a-addBrand', brandId]);
 
   }
-  public sortByCode(dir: any){
-    if(dir === "up" ){
-      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['desc']);
+  public sortByCode(dir: any) {
+    if (dir === "up") {
+      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList, ['code'], ['desc']);
     }
-    else{
-      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList,['code'],['asc']);
+    else {
+      this.sharedDataService.productList = _.orderBy(this.sharedDataService.productList, ['code'], ['asc']);
     }
   }
 

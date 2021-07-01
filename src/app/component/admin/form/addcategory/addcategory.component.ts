@@ -55,7 +55,10 @@ export class AddcategoryComponent implements OnInit {
           alert('Cập  nhập thành công thể loại');
           this.route.navigate(['admin/a-category']);
         },
-        err => console.log(err)
+        error => {
+          console.log(error);
+          alert('Update Failed');
+        }
       );
     } else{
       this.categorySevice.saveOfupdate(this.createNewData()).subscribe(
@@ -64,7 +67,10 @@ export class AddcategoryComponent implements OnInit {
           alert('Thêm mới thành công thể loại');
           this.route.navigate(['admin/a-category']);
         },
-        err => console.log(err)
+        error => {
+          console.log(error);
+          alert('Add Failed');
+        }
       );
     }
   }

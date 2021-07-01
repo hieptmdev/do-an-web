@@ -34,22 +34,27 @@ export class CheckoutComponent implements OnInit {
   //đặt hàng off đây, khi ấn đặt hàng là n lưu mà, n trả cho mình mã code cuả oderdetail
   // chưa viết
   public checkoutoff(): void{
-    const order = {
-      phoneNumber: this.mobilephone,
-      tenNguoiNhan: this.usernamKH,
-      deliveryAddress: this.address,
-      cartId: this.sharedDataService.cart.id,
-      username: localStorage.getItem('username')
-    }
-    this.orderService.saveOrder(order).subscribe(
-      data => {
-        alert("Đặt hàng thành công đơn hàng: " + data.code);
-        this.router.navigate(['products']).then(n => window.location.reload());
-      }, error => {
-        console.log(error);
-        alert("Đặt hàng thất bại");
+    debugger;
+    if (this.sharedDataService.cart == null || this.sharedDataService.cart.cartDetaills == null){
+      alert('Không có sản phẩm trong giỏ hàng');
+    }else {
+      const order = {
+        phoneNumber: this.mobilephone,
+        tenNguoiNhan: this.usernamKH,
+        deliveryAddress: this.address,
+        cartId: this.sharedDataService.cart.id,
+        username: localStorage.getItem('username')
       }
-    );
+      this.orderService.saveOrder(order).subscribe(
+        data => {
+          alert("Đặt hàng thành công đơn hàng: " + data.code);
+          this.router.navigate(['products']).then(n => window.location.reload());
+        }, error => {
+          console.log(error);
+          alert("Đặt hàng thất bại");
+        }
+      );
+    }
   }
 
 

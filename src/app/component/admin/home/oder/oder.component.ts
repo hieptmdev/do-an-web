@@ -27,12 +27,12 @@ export class OderComponent implements OnInit {
     private route: Router,
     private routerA: ActivatedRoute,
     public sharedDataService: SharedDataService) {
-    }
+  }
 
   ngOnInit(): void {
     this.loadOder();
   }
-  public loadOder(): void{
+  public loadOder(): void {
     this.oderService.getAll().subscribe(
       data => {
         this.sharedDataService.productList = data;
@@ -40,39 +40,41 @@ export class OderComponent implements OnInit {
     );
   }
 
-  public deleteOder(id: any): void{
-    if (confirm('Bạn có muốn xóa')){
+  public deleteOder(id: any): void {
+    if (confirm('Bạn có muốn xóa')) {
       this.oderService.deleteOderbyid(id).subscribe(
         // tslint:disable-next-line:no-shadowed-variable
         data => {
           alert("Delete succsess")
           this.loadOder();
         },
-        error => {console.log(error);
-                  alert('đã xóa');
+        error => {
+          console.log(error);
+          alert('Delete Failed');
         }
       );
     }
   }
-  public editOder(idOder: any){
-    this.route.navigate(['admin/a-addOder',idOder]);
+  public editOder(idOder: any) {
+    this.route.navigate(['admin/a-addOder', idOder]);
   }
   dataDetail: any;
-  public getDetailByCode(code: any){
+  public getDetailByCode(code: any) {
     this.oderService.getOderdetailByCode(code).subscribe(
-      data=>{
+      data => {
         this.dataDetail = data;
       },
       err => console.log(err)
     )
   }
-  public seach(): void{
+  public seach(): void {
     console.log(this.search);
     this.oderService.seach(this.search).subscribe(
-      data=>{
+      data => {
         this.sharedDataService.productList = data;
       },
-      error => {console.log(error);
+      error => {
+        console.log(error);
         alert('Không tìm thấy sản phẩm');
       }
     );

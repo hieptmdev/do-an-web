@@ -2,6 +2,5 @@
 @import 'assets/style/css/style.css';
 @import 'assets/style/lib/slick/slick.css';
 @import 'assets/style/lib/slick/slick-theme.css';
-
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

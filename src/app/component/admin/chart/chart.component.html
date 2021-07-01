@@ -1,1 +1,42 @@
-<p>Vẽ biểu đồ thống kê đơn hàng theo tháng!</p>
+<div class="chart-wrapper container">
+  <div class="row">
+    <h1>Thống kê doanh thu năm 2021</h1>
+  </div>
+  <div class="row">
+    <canvas
+      baseChart
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"
+      [plugins]="lineChartPlugins"
+    >
+    </canvas>
+  </div>
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">STT</th>
+          <th scope="col">Tháng</th>
+          <th scope="col">Tổng tiền</th>
+          <th><select class="form-select" aria-label="Default select example">
+            <option selected>Năm</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Tháng 1</td>
+          <td>2000$</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

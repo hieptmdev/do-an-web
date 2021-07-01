@@ -21,7 +21,11 @@ export class ProductService {
       .get(`${this.url}/new`, { observe: 'body' })
       .pipe(catchError((er) => throwError(er)));
   }
-
+  public getcolor(): Observable<any> {
+    return this.http
+      .get(`${this.url}/allcolor`, { observe: 'body' })
+      .pipe(catchError((er) => throwError(er)));
+  }
   public getSale(): Observable<any> {
     return this.http
       .get(`${this.url}/sale`, { observe: 'body' })

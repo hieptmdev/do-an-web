@@ -17,4 +17,19 @@ export class UserService {
     return this.http.get(`${this.url}/all`,{observe: "body"})
     .pipe(catchError(err => throwError(err)));
   }
+  public addUser(data: any): Observable<any> {
+    return this.http
+      .post(`${this.url}`, data, { observe: 'body' })
+      .pipe(catchError((e) => throwError(e)));
+  }
+
+  public deleteUser(id: any){
+    return this.http.delete(`${this.url}/${id}`,{observe:"body"})
+    .pipe(catchError((e)=> throwError(e)))
+  }
+  public getById(id: number): Observable<any> {
+    return this.http
+      .get(`${this.url}/${id}`, { observe: 'body' })
+      .pipe(catchError((e) => throwError(e)));
+  }
 }

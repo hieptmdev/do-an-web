@@ -1,100 +1,87 @@
-<div class="container">
-  <h1 *ngIf="id === 0">Thêm mới sản phẩm</h1>
-  <h1 *ngIf="id !== 0">Cập nhập sản phẩm</h1>
-  <form [formGroup]="productForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Tên sản phẩm</mat-label>
-      <input
-        matInput
-        placeholder="Tên sản phẩm"
-        formControlName="name"
-        require
-      />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field appearance="outline">
-      <mat-label>Mã code</mat-label>
-      <input matInput placeholder="Mã code" formControlName="code" require />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field appearance="outline">
-      <mat-label>Giá bán</mat-label>
-      <input
-        matInput
-        type="number"
-        placeholder="Giá bán"
-        formControlName="priceSell"
-        require
-      />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field class="outline">
-      <mat-select [(ngModel)]="selectCategory" name="category">
-        <mat-option *ngFor="let item of categorys" [value]="item.id">
-          {{ item.name }}
-        </mat-option>
-      </mat-select>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field class="outline">
-      <mat-select [(ngModel)]="selectBrand" name="category">
-        <mat-option *ngFor="let item of brands" [value]="item.id">
-          {{ item.name }}
-        </mat-option>
-      </mat-select>
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <!-- <mat-form-field appearance="outline">
-          <mat-label>File ảnh</mat-label>
-          <input
-            matInput
-            placeholder="Mã code"
-            formControlName="image"
-            require
-          />
-          <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-        </mat-form-field> -->
-        <div class="upload">
-          <span>Anhr</span>
-          <input type="file"
-                          class="form-control"
-                          [(ngModel)]="addProductForm.fileImg"
-                          (change)="fileChangeEvent($event)"
-                           >
-          <img
-            width="100%"
-            height="100%"
-            *ngIf="imageUrl"
-            [src]="imageUrl"
-            class="image"
-          />
+<!-- Login Start -->
+<div class="login">
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-lg-6">
+              <div class="register-form">
+                  <div class="row">
+                      <div class="col-md-6">
+                          <label>Tên sản phẩm</label>
+                          <input class="form-control" type="text" placeholder="Name Product" [(ngModel)]="addProductForm.name"
+                            required name="username" #username="ngModel"/>
+                          <div *ngIf="username.invalid && (username.dirty || username.touched)">
+                            <div *ngIf="username.errors?.required">
+                              <span style="color: red;">Name Product invalid</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <label>mã code</label>
+                          <input class="form-control" type="text" placeholder="Mã code" [(ngModel)]="addProductForm.code"
+                          required name="name" #name="ngModel"/>
+                          <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                            <div *ngIf="name.errors?.required">
+                              <span style="color: red;">Code invalid</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Hãng sản xuất</label>
+                        <select class="form-control" name="brand" [(ngModel)]="addProductForm.brandId">
+                          <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                      <label>Loại sản phẩm</label>
+                      <select class="form-control" name="brand" [(ngModel)]="addProductForm.productTypeId">
+                        <option *ngFor="let ctg of categorys" [value]="ctg.id">{{ctg.name}}</option>
+                      </select>
+                  </div>
+                  <div class="col-md-6">
+                    <label>Màu</label>
+                    <select class="form-control" name="brand" [(ngModel)]="addProductForm.colorId">
+                      <option *ngFor="let c of colors" [value]="c.id">{{c.name}}</option>
+                    </select>
+                </div>
+                      <div class="col-md-6">
+                          <label> Giá sản phẩm</label>
+                          <input class="form-control" type="number" placeholder="Giá sản phẩm" [(ngModel)]="addProductForm.priceSell"
+                          required name="price" #price="ngModel"/>
+                          <div *ngIf="price.invalid && (price.dirty || price.touched)">
+                            <div *ngIf="price.errors?.required">
+                              <span style="color: red;">price invalid</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                          <label>Giảm giá</label>
+                          <input class="form-control" type="text" placeholder="Sale" [(ngModel)]="addProductForm.sale"
+                          required name="phone" #phone="ngModel"/>
+                      </div>
+                      <div class="col-md-6">
+                          <label>Trạng thái</label>
+                          <input class="form-control" type="text" placeholder="trạng thái" [(ngModel)]="addProductForm.status"
+                          required name="status" #status="ngModel"/>
+                          <div *ngIf="status.invalid && (status.dirty || status.touched)">
+                            <div *ngIf="status.errors?.required">
+                              <span style="color: red;">status is required</span>
+                            </div>
+                          </div>
+                      </div>
+                      <div class="col-md-6">
+                        <label>Ảnh</label>
+                        <input class="form-control" type="file" [(ngModel)]="addProductForm.fileImg"
+                        required name="name" #name="ngModel"/>
+                    </div>
+                      <div class="col-md-12">
+                          <button class="btn" (click)="saveandGotoList()">
+                          Đăng Ký
+                        </button>
+                      </div>
+                  </div>
+              </div>
+          </div>
       </div>
-
-    <br />
-    <mat-form-field appearance="outline">
-      <mat-label>Mã màu</mat-label>
-      <input matInput placeholder="Mã code" formControlName="mau" require />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <mat-form-field appearance="outline">
-      <mat-label>số lượng</mat-label>
-      <input matInput placeholder="Mã code" formControlName="soluong" require />
-      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-    </mat-form-field>
-    <br />
-    <button type="submit" class="btn btn-success" (click)="saveandGotoList()">
-      <span *ngIf="id === 0"> ADD AND GO TO LIST </span>
-      <span *ngIf="id !== 0"> UPDATE AND GO TO LIST </span>
-    </button>
-    &nbsp;
-    <button type="submit" class="btn btn-success" (click)="back()">
-      Cancel
-    </button>
-  </form>
+  </div>
 </div>
+<!-- Login End   [disabled]="!username.valid && !status.valid && !name.valid  && !price.valid" -->

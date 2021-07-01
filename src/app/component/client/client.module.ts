@@ -25,7 +25,6 @@ import { HomeComponent } from './home/home.component';
     CheckoutComponent,
     LoginRegisterComponent,
     OrderComponent,
-
   ],
     imports: [
         CommonModule,

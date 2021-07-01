@@ -1,5 +1,4 @@
-export class AddProductForm { // class viết cho gióng java
-  [x: string]: any;
+export class AddProductForm {
   name: string | undefined;
   code: string | undefined;
   priceSell: any | undefined; // giá bán
@@ -13,5 +12,6 @@ export class AddProductForm { // class viết cho gióng java
   endPrice: any | undefined;
   status: String | undefined;
   mieuTa: string | undefined;
-  fileImg: any;
+  fileImg!: File;
+  colorId: any;
 }
