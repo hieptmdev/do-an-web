@@ -17,7 +17,10 @@ export class ProductinfoService {
     .pipe(catchError((er)=> throwError(er)));
   }
 
-
-
+  public deleteDetailPro(productId: number): Observable<any>{
+    return this.http
+    .delete(`${this.url}/${productId}`, {observe: 'body'})
+    .pipe(catchError((er) => throwError(er)));
+  }
 
 }

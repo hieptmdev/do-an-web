@@ -51,4 +51,14 @@ export class OrderService {
       .pipe(catchError((err) => throwError(err)));
   }
 
+  public getChartData(year: any): Observable<any> {
+    return this.http.get(`${this.url}/chart/${year}`, {observe: 'body'})
+      .pipe(catchError((err) => throwError(err)));
+  }
+
+
+  public dowloadOrder(code : any){
+    return this.http.post(`${this.url}/download/order`,code,{responseType: 'blob'})
+    .pipe(catchError((er)=> throwError(er)));
+  }
 }

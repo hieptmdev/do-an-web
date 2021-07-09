@@ -16,7 +16,7 @@ interface status {
 
 export class AddoderComponent implements OnInit {
 
-  // co 3 trang thai set cung the nay cx dc
+
   status: status[] = [
     {value: 0, viewValue: 'Đang lên đơn'},
     {value: 1, viewValue: 'Đang giao hàng'},

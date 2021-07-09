@@ -1,87 +1,123 @@
 <!-- Login Start -->
 <div class="login">
   <div class="container-fluid">
-      <div class="row">
-          <div class="col-lg-6">
-              <div class="register-form">
-                  <div class="row">
-                      <div class="col-md-6">
-                          <label>Tên sản phẩm</label>
-                          <input class="form-control" type="text" placeholder="Name Product" [(ngModel)]="addProductForm.name"
-                            required name="username" #username="ngModel"/>
-                          <div *ngIf="username.invalid && (username.dirty || username.touched)">
-                            <div *ngIf="username.errors?.required">
-                              <span style="color: red;">Name Product invalid</span>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <label>mã code</label>
-                          <input class="form-control" type="text" placeholder="Mã code" [(ngModel)]="addProductForm.code"
-                          required name="name" #name="ngModel"/>
-                          <div *ngIf="name.invalid && (name.dirty || name.touched)">
-                            <div *ngIf="name.errors?.required">
-                              <span style="color: red;">Code invalid</span>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label>Hãng sản xuất</label>
-                        <select class="form-control" name="brand" [(ngModel)]="addProductForm.brandId">
-                          <option *ngFor="let brand of brands" [value]="brand.id">{{brand.name}}</option>
-                        </select>
-                    </div>
-                    <div class="col-md-6">
-                      <label>Loại sản phẩm</label>
-                      <select class="form-control" name="brand" [(ngModel)]="addProductForm.productTypeId">
-                        <option *ngFor="let ctg of categorys" [value]="ctg.id">{{ctg.name}}</option>
-                      </select>
-                  </div>
-                  <div class="col-md-6">
-                    <label>Màu</label>
-                    <select class="form-control" name="brand" [(ngModel)]="addProductForm.colorId">
-                      <option *ngFor="let c of colors" [value]="c.id">{{c.name}}</option>
-                    </select>
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="register-form">
+          <div class="row">
+            <div class="col-md-6">
+              <label>Tên sản phẩm</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Name Product"
+                [(ngModel)]="addProductForm.name"
+                required
+                name="username"
+                #username="ngModel"
+              />
+              <div
+                *ngIf="username.invalid && (username.dirty || username.touched)"
+              >
+                <div *ngIf="username.errors?.required">
+                  <span style="color: red">Name Product invalid</span>
                 </div>
-                      <div class="col-md-6">
-                          <label> Giá sản phẩm</label>
-                          <input class="form-control" type="number" placeholder="Giá sản phẩm" [(ngModel)]="addProductForm.priceSell"
-                          required name="price" #price="ngModel"/>
-                          <div *ngIf="price.invalid && (price.dirty || price.touched)">
-                            <div *ngIf="price.errors?.required">
-                              <span style="color: red;">price invalid</span>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                          <label>Giảm giá</label>
-                          <input class="form-control" type="text" placeholder="Sale" [(ngModel)]="addProductForm.sale"
-                          required name="phone" #phone="ngModel"/>
-                      </div>
-                      <div class="col-md-6">
-                          <label>Trạng thái</label>
-                          <input class="form-control" type="text" placeholder="trạng thái" [(ngModel)]="addProductForm.status"
-                          required name="status" #status="ngModel"/>
-                          <div *ngIf="status.invalid && (status.dirty || status.touched)">
-                            <div *ngIf="status.errors?.required">
-                              <span style="color: red;">status is required</span>
-                            </div>
-                          </div>
-                      </div>
-                      <div class="col-md-6">
-                        <label>Ảnh</label>
-                        <input class="form-control" type="file" [(ngModel)]="addProductForm.fileImg"
-                        required name="name" #name="ngModel"/>
-                    </div>
-                      <div class="col-md-12">
-                          <button class="btn" (click)="saveandGotoList()">
-                          Đăng Ký
-                        </button>
-                      </div>
-                  </div>
               </div>
+            </div>
+            <div class="col-md-6">
+              <label>mã code</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Mã code"
+                [(ngModel)]="addProductForm.code"
+                required
+                name="name"
+                #name="ngModel"
+              />
+              <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                <div *ngIf="name.errors?.required">
+                  <span style="color: red">Code invalid</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Hãng sản xuất</label>
+              <select
+                class="form-control"
+                name="brand"
+                [(ngModel)]="addProductForm.brandId"
+              >
+                <option *ngFor="let brand of brands" [value]="brand.id">
+                  {{ brand.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Loại sản phẩm</label>
+              <select
+                class="form-control"
+                name="brand"
+                [(ngModel)]="addProductForm.productTypeId"
+              >
+                <option *ngFor="let ctg of categorys" [value]="ctg.id">
+                  {{ ctg.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label>Màu</label>
+              <select
+                class="form-control"
+                name="brand"
+                [(ngModel)]="addProductForm.colorId"
+              >
+                <option *ngFor="let c of colors" [value]="c.id">
+                  {{ c.name }}
+                </option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label> Giá sản phẩm</label>
+              <input
+                class="form-control"
+                type="number"
+                placeholder="Giá sản phẩm"
+                [(ngModel)]="addProductForm.priceSell"
+                required
+                name="price"
+                #price="ngModel"
+              />
+              <div *ngIf="price.invalid && (price.dirty || price.touched)">
+                <div *ngIf="price.errors?.required">
+                  <span style="color: red">price invalid</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label>Giảm giá</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="Sale"
+                [(ngModel)]="addProductForm.sale"
+                required
+                name="phone"
+                #phone="ngModel"
+              />
+            </div>
+            <div class="div-md-6">
+                <input type="file" (change)="onSelectedFile($event) "[(ngModel)]="addProductForm.image" >
+            </div>
+            <div class="row">
+              <div class="col-md-12">
+                <button class="btn" (click)="addproducts()">Add Product</button>
+              </div>
+            </div>
+
           </div>
+        </div>
       </div>
+    </div>
   </div>
 </div>
-<!-- Login End   [disabled]="!username.valid && !status.valid && !name.valid  && !price.valid" -->

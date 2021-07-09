@@ -7,5 +7,7 @@ export class SharedDataService {
   public productList: any;
   public cart: any;
   public cate:any;
+  public chartData: any;
+  public oder: any;
   constructor() { }
 }

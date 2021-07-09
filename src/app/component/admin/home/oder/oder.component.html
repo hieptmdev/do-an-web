@@ -22,6 +22,11 @@
       </form>
     </div>
   </div>
+  <div class="row">
+    <div class="col-sn-8">
+      <button mat-raised-button (click)="dowload()">Xuất Excel</button>
+    </div>
+  </div>
   <table id="customers" style="border-collapse: collapse">
     <tr>
       <th>EDIT</th>
@@ -34,7 +39,6 @@
       <th>Địa chỉ giao hàng</th>
       <th>Số điện thoại người nhận</th>
       <th>Tên người nhận</th>
-      <!-- nãy b lấy dc tên đó -->
       <th>Trạng thái giao hàng</th>
     </tr>
     <tr *ngFor="let item of sharedDataService.productList">
@@ -97,4 +101,5 @@
       <td>{{ item?.statusString }}</td>
     </tr>
   </table>
+
 </div>

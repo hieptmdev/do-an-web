@@ -1,8 +1,11 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { data } from 'jquery';
 import * as _ from 'lodash';
+import { Observable } from 'rxjs';
 import { BrandsForm } from 'src/app/model/brands-form';
+import { DowloadOder } from 'src/app/model/exceloder';
 import { SeachForm } from 'src/app/model/seach';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
@@ -19,10 +22,8 @@ export class OderComponent implements OnInit {
   seachFrom: SeachForm = new SeachForm();
   search: any;
   p = 1;
-  valueSeach: any;
-  a: any;
-  odersList: any;
   constructor(
+    private http: HttpClient,
     private oderService: OrderService,
     private route: Router,
     private routerA: ActivatedRoute,
@@ -58,6 +59,35 @@ export class OderComponent implements OnInit {
   public editOder(idOder: any) {
     this.route.navigate(['admin/a-addOder', idOder]);
   }
+
+
+  dowload(): Observable<Blob> {
+    console.log(this.dowloadOder);
+    // @ts-ignore
+    return this.http.post(`http://localhost:8080/datn/oders/download/order`, this.seachFrom, {
+      responseType: 'blob'
+    }).subscribe(data => {
+
+      const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+    });
+  }
+
+  public dowloadOder( ){
+    this.oderService.dowloadOrder(this.search).subscribe(
+      data => {
+        this.sharedDataService.productList = data;
+        const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+      },
+      err => console.log(err)
+    )
+  }
+
+
+
   dataDetail: any;
   public getDetailByCode(code: any) {
     this.oderService.getOderdetailByCode(code).subscribe(
@@ -75,10 +105,12 @@ export class OderComponent implements OnInit {
       },
       error => {
         console.log(error);
-        alert('Không tìm thấy sản phẩm');
+        alert('không thấy đơn hàng');
       }
     );
   }
+
+
 }
 
 

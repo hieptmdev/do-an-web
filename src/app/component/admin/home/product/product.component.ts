@@ -25,7 +25,7 @@ export class ProductComponent implements OnInit {
     private router: Router,
     private productsService: ProductService,
     public sharedDataService: SharedDataService,
-    private productInfoService: ProductinfoService
+    private productInfoService: ProductinfoService,
   ) { }
 
   ngOnInit(): void {
@@ -93,6 +93,24 @@ export class ProductComponent implements OnInit {
   }
 
   public deleteProduct(idProduct: any){
+
+
+  }
+  public deleteDetailProduct(id: any){
+    if (confirm('Bạn có muốn xóa')) {
+      this.productInfoService.deleteDetailPro(id).subscribe(
+        // tslint:disable-next-line:no-shadowed-variable
+        data => {
+          alert("Delete succsess")
+          this.getDetailByCode(id);
+        },
+        error => {
+          console.log(error);
+          alert('Delete Failed');
+        }
+      );
+
+    }
 
   }
   dataDetail: any = {};

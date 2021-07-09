@@ -29,7 +29,6 @@ export class HeaderComponentAdmin implements OnInit {
     }
   }
 
-
   ngOnInit(): void {
   }
   public logout(): void {

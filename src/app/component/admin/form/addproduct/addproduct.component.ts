@@ -5,19 +5,23 @@ import { AddProductForm } from 'src/app/model/addProductForm';
 import { BrandService } from 'src/app/service/brand.service';
 import { CategoryService } from 'src/app/service/category.service';
 import { ProductService } from 'src/app/service/product.service';
-import { MatButtonModule } from '@angular/material/button';
-import { data } from 'jquery';
-
+interface status {
+  value: string;
+  viewValue: string;
+}
 @Component({
   selector: 'app-addproduct',
   templateUrl: './addproduct.component.html',
   styleUrls: ['./addproduct.component.css']
 })
+
 export class AddproductComponent implements OnInit {
+  status: status[] = [
+    {value: 'new', viewValue: 'Hàng mới về'},
+    {value: 'sale', viewValue: 'Giảm Giá'},
+    {value: '', viewValue: 'Thường'}
+  ];
   public id: any;
-  selectedFiles: any;
-  fileToUpload: File | null | undefined;
-  fileAnhProduct: any;
   addProductForm: AddProductForm;
   public categorys: any;
   public brands: any;
@@ -25,12 +29,6 @@ export class AddproductComponent implements OnInit {
   selectCategory: any;
   selectBrand: any;
   selectcolor: any;
-  public products: any;
-  options = [{ value: 'This is value 1', checked: true }];
-  statuses = ['control'];
-
-  imageUrl: any;
-
   constructor(
     private route: Router,
     private productService: ProductService,
@@ -49,6 +47,7 @@ export class AddproductComponent implements OnInit {
       this.loadData(this.id);
     }
   }
+
   private loadData(id: any) {
     // tslint:disable-next-line:no-shadowed-variable
     this.productService.profindById(id).subscribe((data) => {
@@ -56,65 +55,27 @@ export class AddproductComponent implements OnInit {
       console.log(data);
     });
   }
+  onSelectedFile($event: any) {
+    console.log($event.target.files[0].name);
+    this.addProductForm.image = $event.target.files[0].name;
 
-
-  public saveandGotoList() {
-    if (this.id > 0) {
-      this.productService.saveofupdate(this.addProductForm).subscribe(
-        // tslint:disable-next-line:no-shadowed-variable
-        data => {
-          console.log('DataFormCategory', data);
-          alert('Update category success');
-          this.route.navigate(['admin/a-product']);
-        },
-        err => console.log(err)
-      );
-    } else if (this.id == 0) {
-      this.productService.saveofupdate(this.addProductForm).subscribe(
-        data => {
-          console.log('DataFormCategory', data);
-          alert('Add category success');
-          this.route.navigate(['admin/a-product']);
-        },
-        err => console.log(err)
-      );
-    }
   }
-
-  // tslint:disable-next-line:typedef
-  handleFileInput(files: FileList) {
-    this.fileToUpload = files.item(0);
-  }
-
-  fileChangeEvent(event: Event) {
-    const element = event.currentTarget as HTMLInputElement;
-    let fileList: any = element.files;
-    if (fileList) {
-      console.log("FileUpload -> files", fileList);
-    }
-    this.addProductForm.fileImg = fileList[0];
-  }
-
   public addproducts(): void {
-    this.addProductForm.brandId = this.selectBrand;
-    this.addProductForm.productTypeId = this.selectCategory;
     const formData = new FormData();
-    formData.append('fileImg', this.addProductForm.fileImg);
-    formData.append('brandId', this.selectBrand);
-    formData.append('productTypeId', this.selectCategory);
-    formData.append('fileImg', this.addProductForm.fileImg);
-    formData.append('brandId', this.selectBrand);
-    formData.append('productTypeId', this.selectCategory);
-    formData.append('fileImg', this.addProductForm.fileImg);
-    formData.append('brandId', this.selectBrand);
-    formData.append('productTypeId', this.selectCategory);
     // @ts-ignore
     formData.append('name', this.addProductForm.name);
+    formData.append('code', this.addProductForm.code);
+    formData.append('priceSell',this.addProductForm.priceSell);
+    formData.append('sale',this.addProductForm.sale);
+    formData.append('brandId', this.addProductForm.brandId);
+    formData.append('productTypeId', this.addProductForm.productTypeId);
+    formData.append('colorId',this.addProductForm.colorId);
+    formData.append('image',this.addProductForm.image);
     console.log(formData);
     this.productService.saveofupdate(formData).subscribe(
       data => {
         console.log('DataFormCategory', data);
-        alert('Update category success');
+        alert('Add products success');
         this.route.navigate(['admin/a-product']);
       },
       (error: any) => {
@@ -122,7 +83,6 @@ export class AddproductComponent implements OnInit {
         console.log(error);
       }
     );
-
   }
   // Get Brand,cate
   public loadCategory(): void {
@@ -149,9 +109,31 @@ export class AddproductComponent implements OnInit {
       error => console.log(error)
     );
   }
-
-
   public back() {
     this.route.navigate(['admin/dashboard']);
   }
+
+
+    public saveandGotoList() {
+      if (this.id > 0) {
+        this.productService.saveofupdate(this.addProductForm).subscribe(
+          // tslint:disable-next-line:no-shadowed-variable
+          data => {
+            console.log('DataFormCategory', data);
+            alert('Update category success');
+            this.route.navigate(['admin/a-product']);
+          },
+          err => console.log(err)
+        );
+      } else if (this.id == 0) {
+        this.productService.saveofupdate(this.addProductForm).subscribe(
+          data => {
+            console.log('DataFormCategory', data);
+            alert('Add category success');
+            this.route.navigate(['admin/a-product']);
+          },
+          err => console.log(err)
+        );
+      }
+    }
 }
