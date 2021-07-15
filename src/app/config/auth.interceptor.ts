@@ -24,4 +24,3 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request);
   }
 }
-//.set('Content-Type', 'multipart/form-data')
