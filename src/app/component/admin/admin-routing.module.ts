@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AdminComponent } from "./admin.component";
 import { ChartComponent } from "./chart/chart.component";
+import { ChartmonthComponent } from "./chartmonth/chartmonth.component";
 import { AddbrandComponent } from "./form/addbrand/addbrand.component";
 import { AddcategoryComponent } from "./form/addcategory/addcategory.component";
 import { AddoderComponent } from "./form/addoder/addoder.component";
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path:'a-user', component: UseradminComponent},
     {path:'a-oder', component: OderComponent},
     {path:'a-chart',component: ChartComponent},
+    {path:'a-month',component:ChartmonthComponent},
     {path:'a-addCate/:id',component: AddcategoryComponent},
     {path:'a-addBrand/:id',component: AddbrandComponent},
     {path:"a-addUser/:id",component:AdduserComponent},

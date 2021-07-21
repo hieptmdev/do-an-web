@@ -52,7 +52,6 @@ export class ChartComponent implements OnInit {
     this.loadDataChart(2021);
   }
   public changingValue() {
-    console.log(this.yeared);
     this.loadDataChart(this.yeared);
   }
 

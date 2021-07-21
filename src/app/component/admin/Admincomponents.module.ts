@@ -27,6 +27,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatRadioModule} from '@angular/material/radio';
 //import {ChartModule} from 'primeng/chart';
 import { ChartsModule } from 'ng2-charts';
+import { ChartmonthComponent } from './chartmonth/chartmonth.component';
 @NgModule({
   imports: [
     CommonModule,
@@ -60,6 +61,7 @@ import { ChartsModule } from 'ng2-charts';
     AdduserComponent,
     AddoderComponent,
     ProductComponent,
+    ChartmonthComponent,
 
   ],
   exports: [

@@ -62,8 +62,9 @@ export class OderComponent implements OnInit {
 
 
   dowload(): Observable<Blob> {
+    console.log(this.dowloadOder);
     // @ts-ignore
-    return this.http.post(`http://localhost:8080/datn/oders/download/order`, this.search, {
+    return this.http.post(`http://localhost:8080/datn/oders/download/order`, this.seachFrom, {
       responseType: 'blob'
     }).subscribe(data => {
 
@@ -72,6 +73,21 @@ export class OderComponent implements OnInit {
       window.open(url);
     });
   }
+
+  public dowloadOder( ){
+    this.oderService.dowloadOrder(this.search).subscribe(
+      data => {
+        this.sharedDataService.productList = data;
+        const blob = new Blob([data], {type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+      const url = window.URL.createObjectURL(blob);
+      window.open(url);
+      },
+      err => console.log(err)
+    )
+  }
+
+
+
   dataDetail: any;
   public getDetailByCode(code: any) {
     this.oderService.getOderdetailByCode(code).subscribe(
