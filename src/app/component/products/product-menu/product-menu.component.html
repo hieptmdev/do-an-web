@@ -1,5 +1,5 @@
 <!-- Side Bar Start -->
-    <div class="sidebar-widget category">
+    <!-- <div class="sidebar-widget category">
         <h2 class="title">Thể Loại</h2>
         <nav class="navbar bg-light" *ngFor="let cate of categorys">
             <ul class="navbar-nav">
@@ -8,10 +8,16 @@
                 </li>
             </ul>
         </nav>
-    </div>
+    </div>     -->
+    <div class="sidebar-widget brands">
+      <h2 class="title" style="color: #29e8e8">Thể Loại</h2>
+      <ul>
+        <li  *ngFor="let cate of categorys "><a href="#" routerLink="{{'category/'+cate.id}}">{{cate.name}}</a></li>
+      </ul>
+  </div>
 
     <div class="sidebar-widget brands">
-        <h2 class="title">Thương Hiệu</h2>
+        <h2 class="title" style="color: #29e8e8">Thương Hiệu</h2>
         <ul>
           <li *ngFor="let brand of brands"><a href="" routerLink="{{'brand/'+brand.id}}">{{brand.name}}</a></li>
         </ul>

@@ -5,5 +5,6 @@ export class DangKyForm {
   email : string | undefined;
   name : string | undefined;
   repassword :string| undefined;
-
+  address: string|undefined;
+  dob:any|undefined;
 }

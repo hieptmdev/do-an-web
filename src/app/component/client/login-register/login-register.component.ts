@@ -14,7 +14,9 @@ export class LoginRegisterComponent implements OnInit {
    loginForm: LoginForm;
    dangKyForm :  DangKyForm;
    keepLogin: boolean | undefined;
-
+   rememberMe: boolean = false;
+   display = 'none'
+   verifyModalData = {}
   constructor(private loginService: LoginService,
               private router: Router,
               private jwtService: JwtHelperService) {
@@ -30,13 +32,31 @@ export class LoginRegisterComponent implements OnInit {
   public dangky() : void{
     this.loginService.dangky(this.dangKyForm).subscribe(
       data => {
-        alert("Đăng Ký Thành Công")
+        alert("Đăng ký thành công, mời bạn đăng nhập lại"),
+        this.router.navigate(['home']).then(() => window.location.reload());
       },
       (error: any) => {
         alert("Đăng ký thất bại")}
     )
   }
-
+  openVerifyEmailModal() {
+    this.setVerifyModalData('Verify email', 'Send link', 'verify');
+    this.display = 'block';
+  }
+  openForgotPassModal() {
+    this.setVerifyModalData('Reset Password', 'Send OTP', 'reset');
+    this.display = 'block';
+  }
+  eventDisplay(event :any) {
+    this.display = 'none';
+  }
+  setVerifyModalData(title:string = '', btn: string = '', type: string = '') {
+    this.verifyModalData = {
+      title: title,
+      btn: btn,
+      type: type
+    }
+  }
   public login(): void {
     //console.log(this.loginForm);
     this.loginService.login(this.loginForm).subscribe(

@@ -29,10 +29,6 @@ export class CheckoutComponent implements OnInit {
       }
     }
   }
-
-
-  //đặt hàng off đây, khi ấn đặt hàng là n lưu mà, n trả cho mình mã code cuả oderdetail
-  // chưa viết
   public checkoutoff(): void{
     debugger;
     if (this.sharedDataService.cart == null || this.sharedDataService.cart.cartDetaills == null){

@@ -4,17 +4,25 @@
               <form action="" #formSearch="ngForm" (ngSubmit)="search()">
                 <div class="row" >
                     <div class="col-md-5">
+                      <div class="col-md-6">
+                        <h2>Thể Loại </h2>
+                      </div>
                       <select style="width:250px; height: 38px;" [(ngModel)]="selectCategory" name="category">
-                        <option *ngFor="let item of categorys" [value]="item.id">{{item.name}}</option>
+                        <option *ngFor="let item of categorys" [value]="item.id"> {{item.name}}</option>
                       </select>
                     </div>
                     <div class="col-md-5">
+                      <div class="col-md-6">
+                        <h2>Hãng sản xuất </h2>
+                      </div>
                       <select style="width:250px; height: 38px;" [(ngModel)]="selectBrand" name="brand">
                         <option *ngFor="let item of brands" [value]="item.id">{{item.name}}</option>
                       </select>
                     </div>
                     <div class="col-md-2" >
-                      <input style=" width: 110px;height:37px;"type="submit" value="Tìm Kiếm">
+                      <input style=" width: 120px;
+                      height: 40px;
+                      margin-top: 46px; "type="submit" value="Search">
                     </div>
                 </div>
               </form>

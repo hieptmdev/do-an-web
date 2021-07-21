@@ -4,7 +4,10 @@ import { data } from 'jquery';
 import { SeachForm } from 'src/app/model/seach';
 import { SharedDataService } from 'src/app/service/shared-data.service';
 import { UserService } from 'src/app/service/user.service';
-
+interface code {
+  value: number;
+  viewValue: string;
+}
 @Component({
   selector: 'app-useradmin',
   templateUrl: './useradmin.component.html',
@@ -14,6 +17,11 @@ export class UseradminComponent implements OnInit {
   p = 1;
   seachFrom: SeachForm = new SeachForm();
   users: any;
+  code: code[] = [
+    {value: 0, viewValue: 'Khách hàng'},
+    {value: 1, viewValue: 'Nhân viên'},
+    {value: 2, viewValue: 'Quản lý'}
+  ];
   constructor(
     private userService: UserService,
     public sharedDataService: SharedDataService,

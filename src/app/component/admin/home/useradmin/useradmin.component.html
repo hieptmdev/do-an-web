@@ -1,7 +1,9 @@
 <div class="row" style="margin-bottom: 300px">
+
   <div class="col-12 col-md-12">
     <h1>Quản lý User</h1>
   </div>
+
   <div class="col-6 col-md-6">
     <button
       style="margin-left: 14px; height: 50px; margin-bottom: 20px; width: 250px"
@@ -11,18 +13,23 @@
     </button>
   </div>
   <div class="col-6 col-md-6">
-    <div class="search">
-      <input
-        style="height: 40px; width: 250px"
-        type="text"
-        placeholder="Search"
-        [(ngModel)]="seachFrom.seach"
-      />
-      <button
-        class="fa fa-search"
-        style="height: 40px; width: 40px"
-        (click)="timkiem()"
-      ></button>
+    <div class="row">
+      <div class=" col-md-6">
+        <div class="product-view-top">
+          <form action="" #formSearch="ngForm" (ngSubmit)="timkiem()">
+            <div class="row" >
+                <div class="col-md-5">
+                  <select style="width:250px; height: 38px;" [(ngModel)]="code" name="category">
+                    <option *ngFor="let item of code"  [value]="item.value"> {{ item.viewValue }}</option>
+                  </select>
+                </div>
+            </div>
+          </form>
+        </div>
+    </div>
+    <div  class=" col-md-6">
+      <input style=" width: 110px;height:37px;"type="submit" value="Tìm Kiếm">
+    </div>
     </div>
   </div>
 
@@ -32,12 +39,12 @@
         <th>EDIT</th>
         <th>Id</th>
         <th>UserName</th>
-        <th>code(quyền)</th>
+        <th>Chức vụ</th>
         <th>Ngày sinh</th>
         <th>Email</th>
         <th>Phone</th>
         <th>Địa chỉ</th>
-        <th>Chức vụ(isAdmin)</th>
+        <th>isAdmin</th>
         <th>ten dang nhap</th>
       </tr>
       <tr

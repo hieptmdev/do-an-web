@@ -1,3 +1,3 @@
 export class SeachForm {
-  seach: string | undefined; //search @@
+  seach: string | undefined;
 }

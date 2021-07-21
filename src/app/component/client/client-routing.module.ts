@@ -5,6 +5,7 @@ import { CheckoutComponent } from "./checkout/checkout.component";
 import { ClientComponent } from './client.component';
 import { HomeComponent } from './home/home.component';
 import { LoginRegisterComponent } from "./login-register/login-register.component";
+import { LoginComponent } from "./login/login.component";
 import {OrderComponent} from './order/order.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path: '', redirectTo: 'home', pathMatch: 'full'},
     {path: 'home', component: HomeComponent},
     {path: 'login-register', component: LoginRegisterComponent},
+    {path:'login',component: LoginComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'cart', component: CartComponent}, { path: 'order', component: OrderComponent},
     {path: 'products', loadChildren: () => import('../products/products.module').then(m => m.ProductsModule)},

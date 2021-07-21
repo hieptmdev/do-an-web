@@ -1,0 +1,41 @@
+<div class="login">
+  <div class="container-fluid">
+    <div class="col-lg-8">
+      <div class="login-form">
+          <div class="row">
+            <div class="col-md-12">
+              <h1 style="color: rgb(193, 153, 229);">Login Form
+              </h1>
+            </div>
+              <div class="col-md-6">
+                  <label>Username</label>
+                  <input class="form-control" type="text" placeholder="Username" [(ngModel)]="loginForm.username"
+                  required name="name" #name="ngModel"/>
+                  <div *ngIf="name.invalid && (name.dirty || name.touched)">
+                    <div *ngIf="name.errors?.required">
+                      <span style="color: red;">Username is required</span>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="col-md-6">
+                  <label>Password</label>
+                  <input class="form-control" type="password" placeholder="Password" [(ngModel)]="loginForm.password"
+                  required name="name1" #name1="ngModel"/>
+                  <div *ngIf="name1.invalid && (name.dirty || name1.touched)">
+                    <div *ngIf="name1.errors?.required">
+                      <span style="color: red;">Username is required</span>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-md-12">
+              <button class="btn" (click)="login()"
+              [disabled]="!name.valid && !name1.valid">
+            Đăng nhập
+          </button>
+          </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>

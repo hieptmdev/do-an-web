@@ -2,9 +2,12 @@
 <div class="login">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-6">
+      <div class="col-lg-12">
         <div class="register-form">
-          <div class="row">
+          <div class="row" style=" width: 1000px; margin-bottom: 500px">
+              <div class="col-md-12">
+                <h1>Thêm sản phẩm</h1>
+              </div>
             <div class="col-md-6">
               <label>Tên sản phẩm</label>
               <input
@@ -65,7 +68,7 @@
                 </option>
               </select>
             </div>
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
               <label>Màu</label>
               <select
                 class="form-control"
@@ -76,6 +79,15 @@
                   {{ c.name }}
                 </option>
               </select>
+            </div> -->
+            <div class="col-md-6">
+              <label>Trạng thái</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="status products"
+                [(ngModel)]="addProductForm.status"
+              />
             </div>
             <div class="col-md-6">
               <label> Giá sản phẩm</label>
@@ -95,26 +107,41 @@
               </div>
             </div>
             <div class="col-md-6">
-              <label>Giảm giá</label>
+              <label>Giảm cũ</label>
               <input
                 class="form-control"
                 type="text"
                 placeholder="Sale"
                 [(ngModel)]="addProductForm.sale"
-                required
-                name="phone"
-                #phone="ngModel"
+              />
+            </div>
+            <div class="col-md-6">
+              <label>Mô tả sản phẩm</label>
+              <input
+                class="form-control"
+                type="text"
+                placeholder="mô tả sản phẩm"
+                [(ngModel)]="addProductForm.mieuTa"
               />
             </div>
             <div class="div-md-6">
+              Ảnh sản phẩm
+            </div>
+            <div class="div-md-6" style="margin-top:20px ">
                 <input type="file" (change)="onSelectedFile($event) "[(ngModel)]="addProductForm.image" >
             </div>
-            <div class="row">
-              <div class="col-md-12">
-                <button class="btn" (click)="addproducts()">Add Product</button>
+
+            <div class="row" style="margin-top:30px ;">
+              <div class="col-md-2">
+                <button class="btn" (click)="saveandGotoList()">Add product </button>
+              </div>
+              <div class="col-md-2">
+                <button class="btn" (click)="back()">Cancel</button>
               </div>
             </div>
+            <div class="row" style="margin-top:30px ;">
 
+            </div>
           </div>
         </div>
       </div>

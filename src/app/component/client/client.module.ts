@@ -13,6 +13,7 @@ import { LoginRegisterComponent } from './login-register/login-register.componen
 import {NgxPaginationModule} from 'ngx-pagination';
 import { OrderComponent } from './order/order.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { HomeComponent } from './home/home.component';
     CheckoutComponent,
     LoginRegisterComponent,
     OrderComponent,
+    LoginComponent,
   ],
     imports: [
         CommonModule,

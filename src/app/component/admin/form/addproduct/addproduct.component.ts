@@ -58,31 +58,49 @@ export class AddproductComponent implements OnInit {
   onSelectedFile($event: any) {
     console.log($event.target.files[0].name);
     this.addProductForm.image = $event.target.files[0].name;
-
   }
-  public addproducts(): void {
+  public saveandGotoList() {
+
+    this.addProductForm.id =  this.id;
     const formData = new FormData();
     // @ts-ignore
+    formData.append('id',this.addProductForm.id);
     formData.append('name', this.addProductForm.name);
     formData.append('code', this.addProductForm.code);
     formData.append('priceSell',this.addProductForm.priceSell);
     formData.append('sale',this.addProductForm.sale);
     formData.append('brandId', this.addProductForm.brandId);
     formData.append('productTypeId', this.addProductForm.productTypeId);
-    formData.append('colorId',this.addProductForm.colorId);
+    formData.append('status',this.addProductForm.status);
+    formData.append("mieuTa",this.addProductForm.mieuTa);
     formData.append('image',this.addProductForm.image);
     console.log(formData);
-    this.productService.saveofupdate(formData).subscribe(
-      data => {
-        console.log('DataFormCategory', data);
-        alert('Add products success');
-        this.route.navigate(['admin/a-product']);
-      },
-      (error: any) => {
-        alert('Thất bại');
-        console.log(error);
-      }
-    );
+    console.log(this.id);
+    if (this.id > 0) {
+      this.productService.saveofupdate(formData).subscribe(
+        data => {
+          console.log('DataFormCategory', data);
+          alert('Update Products success');
+          this.route.navigate(['admin/dashboard']);
+        },
+        (error: any) => {
+          alert('Thất bại');
+          console.log(error);
+        }
+      );
+    } else if (this.id == 0) {
+      this.productService.saveofupdate(formData).subscribe(
+        data => {
+          console.log('DataFormProducts', data);
+          alert('Add category success');
+          this.route.navigate(['admin/dashboard']);
+        },
+        (error: any) => {
+          alert('Thất bại');
+          console.log(error);
+        }
+      );
+    }
   }
   // Get Brand,cate
   public loadCategory(): void {
@@ -112,28 +130,4 @@ export class AddproductComponent implements OnInit {
   public back() {
     this.route.navigate(['admin/dashboard']);
   }
-
-
-    public saveandGotoList() {
-      if (this.id > 0) {
-        this.productService.saveofupdate(this.addProductForm).subscribe(
-          // tslint:disable-next-line:no-shadowed-variable
-          data => {
-            console.log('DataFormCategory', data);
-            alert('Update category success');
-            this.route.navigate(['admin/a-product']);
-          },
-          err => console.log(err)
-        );
-      } else if (this.id == 0) {
-        this.productService.saveofupdate(this.addProductForm).subscribe(
-          data => {
-            console.log('DataFormCategory', data);
-            alert('Add category success');
-            this.route.navigate(['admin/a-product']);
-          },
-          err => console.log(err)
-        );
-      }
-    }
 }
