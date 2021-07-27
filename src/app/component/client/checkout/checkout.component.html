@@ -113,9 +113,9 @@
         <div class="checkout-inner">
           <div class="checkout-summary">
             <h1>Cart Total</h1>
-            <p>Sub Total<span>{{total}}</span></p>
-            <p>Shipping Cost<span>${{shippingCost}}</span></p>
-            <h2>Grand Total<span>${{(total)}}</span></h2>
+            <p>Sub Total<span>{{total | currency: 'VND'}}</span></p>
+            <p>Shipping Cost<span>{{shippingCost | currency: 'VND'}}</span></p>
+            <h2>Grand Total<span>{{(total + shippingCost | currency: 'VND')}}</span></h2>
             <div>
               <button type="submit" (click)="checkout()">Thanh toán trực tuyến</button>
             </div>

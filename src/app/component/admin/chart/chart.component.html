@@ -1,23 +1,130 @@
-<div class="chart-wrapper container">
-  <div class="row">
-    <canvas
-      baseChart
-      [datasets]="lineChartData"
-      [labels]="lineChartLabels"
-      [options]="lineChartOptions"
-      [colors]="lineChartColors"
-      [legend]="lineChartLegend"
-      [chartType]="lineChartType"
-      [plugins]="lineChartPlugins"
-    >
-    </canvas>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+  </style>
+<div class="row">
+  <div style="margin-bottom: 20px">
+    <div class="col-md-10">
+      <h2 style="color: tomato">
+        Biểu đồ thể hiện doanh thu của các tháng theo năm {{ this.year }}
+      </h2>
+    </div>
+    <div class="col-md-3">
+      <select
+        class="form-select"
+        [(ngModel)]="year"
+        (ngModelChange)="changingValue()"
+      >
+        <option selected *ngFor="let item of yeared" [value]="item.viewValue">
+          {{ item.viewValue }}
+        </option>
+      </select>
+    </div>
   </div>
-  <div class="row col-6">
-    <h1>Doanh thu của năm {{this.yeared}}</h1>
-  </div>
-  <div class="col-6">
-    <select class="form-select" aria-label="Default select example" [(ngModel)]="yeared" (ngModelChange)="changingValue()" >
-      <option selected *ngFor="let item of yeared" [value]="item.viewValue"> {{ item.viewValue }}</option>
-    </select>
+  <div>
+    <div class="row">
+      <div class="chart-wrapper col-md-6" style="margin-bottom: 50px;">
+        <div class="row">
+          <canvas
+            baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+          >
+          </canvas>
+        </div>
+      </div>
+      <div class="chart-wrapper col-md-6">
+        <div class="row">
+          <canvas
+            baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [colors]="lineChartColors"
+            [legend]="lineChartLegend"
+            [chartType]="lineChartType"
+            [plugins]="lineChartPlugins"
+          >
+          </canvas>
+        </div>
+      </div>
+      <div class=" container col-md-12" style="margin-left: 20px;">
+        <div class="row">
+          <h2>Doanh thu của các tháng theo năm {{ this.year }}</h2>
+          <table style="width:100%">
+            <caption>Monthly savings</caption>
+            <tr>
+              <th>Month</th>
+              <th>Doanh số</th>
+            </tr>
+            <tr>
+              <td>Tháng 1</td>
+              <td>{{dataChart.thang1 | currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 2</td>
+              <td>{{dataChart.thang2| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 3</td>
+              <td>{{dataChart.thang3| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 4</td>
+              <td>{{dataChart.thang4| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 5</td>
+              <td>{{dataChart.thang5| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 6</td>
+              <td>{{dataChart.thang6| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 7</td>
+              <td>{{dataChart.thang7| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 8</td>
+              <td>{{dataChart.thang8| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 9</td>
+              <td>{{dataChart.thang9| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 10</td>
+              <td>{{dataChart.thang10| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 11</td>
+              <td>{{dataChart.thang11| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tháng 12</td>
+              <td>{{dataChart.thang12| currency:"VND"}}</td>
+            </tr>
+            <tr>
+              <td>Tổng Tiền</td>
+              <td>{{tong|currency:"VND"}}</td>
+            </tr>
+          </table>
+
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

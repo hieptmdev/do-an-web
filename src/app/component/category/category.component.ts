@@ -18,6 +18,8 @@ export class CategoryComponent implements OnInit {
   p = 1;categorys:any;
   categoryId: any;
   products : any;
+  selectCategory: any = 0;
+  selectBrand: any = 0;
   constructor(
     private route : ActivatedRoute,
     private cateServive : CategoryService,
@@ -86,5 +88,22 @@ export class CategoryComponent implements OnInit {
       alert("Sản phẩm đã hết hàng!");
     }
   }
+  public search(): void {
+    console.log(this.selectCategory);
+    if (this.selectBrand != 0 && this.selectCategory != 0) {
+    const data = {
+      productTypeId: this.selectCategory,
+      brandId: this.selectBrand
+    };
+    this.productService.getFind(data).subscribe(
+      data=> {
+        this.sharedDataService.productList = data;
+      },
+      error => console.log(error)
+    );
+    }else {
+      alert("Chưa chọn loại sản phẩm và hãng sản xuất")
+    }
 
+  }
 }

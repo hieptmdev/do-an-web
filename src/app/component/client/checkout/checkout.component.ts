@@ -10,31 +10,36 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
 })
 export class CheckoutComponent implements OnInit {
 
-  shippingCost = 1;
+  shippingCost = 15000;
   total = 0;
   mobilephone: any;
   usernamKH: any;
   address: any;
-    url : any;
-    testPrice = 5;
-    constructor(
-      public sharedDataService: SharedDataService,
-      private router : Router,
-      private checkoutService: CheckoutService,
-      private orderService: OrderService
+  url: any;
+  testPrice = 5;
+  constructor(
+    public sharedDataService: SharedDataService,
+    private router: Router,
+    private checkoutService: CheckoutService,
+    private orderService: OrderService
   ) {
-    if (sharedDataService.cart.cartDetaills != null && sharedDataService.cart.cartDetaills.length > 0){
-      for(let c of sharedDataService.cart.cartDetaills) {
-        this.total += c.productInfoProductPriceSell;
+    {
+      if (
+        sharedDataService.cart.cartDetaills != null &&
+        sharedDataService.cart.cartDetaills.length > 0
+      ) {
+        for (let c of sharedDataService.cart.cartDetaills) {
+          this.total += c.productInfoProductPriceSell * c.numberPro;
+        }
       }
     }
   }
 
-  public checkoutoff(): void{
+  public checkoutoff(): void {
     debugger;
-    if (this.sharedDataService.cart == null || this.sharedDataService.cart.cartDetaills == null){
+    if (this.sharedDataService.cart == null || this.sharedDataService.cart.cartDetaills == null) {
       alert('Không có sản phẩm trong giỏ hàng');
-    }else {
+    } else {
       const order = {
         phoneNumber: this.mobilephone,
         tenNguoiNhan: this.usernamKH,
@@ -60,13 +65,13 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public checkout(): void{
+  public checkout(): void {
     this.checkoutService.checkoutPaypal(this.testPrice).subscribe(
       // tslint:disable-next-line:no-shadowed-variable
       data => {
-        window.location.href=data.redirect;
+        window.location.href = data.redirect;
       },
-      ( error: any) => {
+      (error: any) => {
         alert('Thất bại');
         console.log(error);
       }

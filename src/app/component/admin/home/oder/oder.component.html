@@ -1,30 +1,60 @@
-<div style="margin-bottom: 300px">
-  <h1 class="mt-4">Quản lý đơn hàng</h1>
-  <div class="card mb-4">
-    <div class="card-body">
-      <form class="example" action="action_page.php">
-        <div class="col-6 col-md-6">
-          <div class="search">
-            <input
-              style="height: 40px; width: 250px"
-              type="text"
-              placeholder="Search"
-              name="search"
-              [(ngModel)]="search"
-            />
-            <button
-              class="fa fa-search"
-              style="height: 40px; width: 40px"
-              (click)="seach()"
-            ></button>
-          </div>
-        </div>
-      </form>
+<div class="row" style="margin-bottom: 300px; margin-left: 20px">
+  <div class="col-12 col-md-12">
+    <h1>Quản lý đơn hàng</h1>
+  </div>
+  <div class="col-6 col-md-4">
+    <div class="search">
+      <input
+        style="height: 40px; width: 250px"
+        type="text"
+        placeholder="Search"
+        name="code"
+        [(ngModel)]="seachFrom.code"
+      />
+      <button
+        class="fa fa-search"
+        style="height: 40px; width: 40px"
+        (click)="seach()"
+      ></button>
+    </div>
+  </div>
+  <div class="col-6 col-md-8">
+    <div class="row">
+      <div class="col-sm-6">
+        <form>
+          <select
+            style="width: 250px; height: 38px ;margin-left: 10px;"
+            [(ngModel)]="codeValue"
+            name="category"
+          >
+            <option *ngFor="let item of status" [value]="item.value">
+              {{ item.viewValue }}
+            </option>
+          </select>
+        </form>
+      </div>
+
+      <div class="col-sm-2">
+        <input
+          style="width: 110px; height: 37px; margin-left: -90px"
+          type="button"
+          value="Tìm Kiếm"
+          (click)="timkiem()"
+        />
+      </div>
     </div>
   </div>
   <div class="row">
-    <div class="col-sn-8">
-      <button mat-raised-button (click)="dowload()">Xuất Excel</button>
+    <div class="col-sm-9"></div>
+    <div class="col-sm-3">
+      <button
+        type="button"
+        style="margin-left: 155px"
+        class="btn btn-success"
+        (click)="dowload()"
+      >
+        Xuất Excel
+      </button>
     </div>
   </div>
   <table id="customers" style="border-collapse: collapse">
@@ -41,7 +71,7 @@
       <th>Tên người nhận</th>
       <th>Trạng thái giao hàng</th>
     </tr>
-    <tr *ngFor="let item of sharedDataService.productList">
+    <tr *ngFor="let item of sharedDataService.productList | paginate: { itemsPerPage: 6, currentPage: p}">
       <td>
         <mat-icon
           style="cursor: pointer"
@@ -60,15 +90,25 @@
         </mat-icon>
       </td>
       <td>{{ item?.id }}</td>
-      <td><a href="#" data-toggle="modal" data-target="#myModal" (click)="getDetailByCode(item.code)">{{item.code}} </a></td>
-      <div id="myModal"  class="modal fade" tabindex="-1" role="dialog">
+      <td>
+        <a
+          href="#"
+          data-toggle="modal"
+          data-target="#myModal"
+          (click)="getDetailByCode(item.code)"
+          >{{ item.code }}
+        </a>
+      </td>
+      <div id="myModal" class="modal fade" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
-            <div class="modal-header" >
-              <h4 class="modal-title">Chi Tiết Đơn Hàng &nbsp;{{item.code}}</h4>
+            <div class="modal-header">
+              <h4 class="modal-title">
+                Chi Tiết Đơn Hàng &nbsp;{{ item.code }}
+              </h4>
             </div>
             <div class="modal-body">
-              <table style="width:100%">
+              <table style="width: 100%">
                 <tr>
                   <th>Tên sản phẩm</th>
                   <th>Giá tiền</th>
@@ -77,29 +117,44 @@
                   <th>Tổng tiền</th>
                 </tr>
                 <tr *ngFor="let item of dataDetail">
-                  <td>{{item.productInfoProductName}}</td>
-                  <td>{{item.productInfoProductPriceSell}}</td>
-                  <td>{{item.numberProduct}}</td>
-                  <td>{{item.productInfoColorName}}</td>
-                  <td>{{item.numberProduct *item.productInfoProductPriceSell}}</td>
+                  <td>{{ item.productInfoProductName }}</td>
+                  <td>{{ item.productInfoProductPriceSell | currency: "VND"}}</td>
+                  <td>{{ item.numberProduct }}</td>
+                  <td>{{ item.productInfoColorName }}</td>
+                  <td>
+                    {{
+                      item.numberProduct * item.productInfoProductPriceSell
+                        | currency: "VND"
+                    }}
+                  </td>
                 </tr>
               </table>
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+              <button
+                type="button"
+                class="btn btn-default"
+                data-dismiss="modal"
+              >
+                Đóng
+              </button>
             </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal-dialog -->
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
       </div>
-      <td>{{ item?.totalResult }}</td>
+      <td>{{ item?.totalResult | currency: "VND"| lowercase }}</td>
       <td>{{ item?.numberProduct }}</td>
-      <td>{{ item?.createdDate|date:'yyyy-MM-dd' }}</td>
-      <td>{{ item?.deliveryDate | date:'yyyy-MM-dd' }}</td>
+      <td>{{ item?.createdDate | date: "yyyy-MM-dd" }}</td>
+      <td>{{ item?.deliveryDate | date: "yyyy-MM-dd" }}</td>
       <td>{{ item?.deliveryAddress }}</td>
       <td>{{ item?.phoneNumber }}</td>
       <td>{{ item?.username }}</td>
       <td>{{ item?.statusString }}</td>
     </tr>
   </table>
-
+  <div class="col-md-12" style="padding-top: 20px">
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
 </div>

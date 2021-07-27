@@ -13,14 +13,6 @@ interface yeared {
 })
 export class ChartmonthComponent implements OnInit {
 
-
-
-
-  // public lineChartData: Array<any> = [
-  //   {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-  //   {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-  //   {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
-  // ];
   lineChartData: ChartDataSets[] = [];
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November',
   'December'];
@@ -60,9 +52,10 @@ export class ChartmonthComponent implements OnInit {
 
   constructor(private orderService: OrderService,
     public sharedDataService: SharedDataService,) {
+      this.year = new Date().getFullYear();
   }
   ngOnInit(): void {
-    this.loadDataChart(2021);
+    this.loadDataChart(this.year);
   }
   yeared: yeared[] = [
     {value: 0, viewValue: 2016},
@@ -72,6 +65,7 @@ export class ChartmonthComponent implements OnInit {
     {value: 4, viewValue: 2020},
     {value: 5, viewValue: 2021},
   ];
+  year!: number;
   public changingValue() {
     this.loadDataChart(this.yeared);
   }
@@ -85,6 +79,8 @@ export class ChartmonthComponent implements OnInit {
         }
         this.lineChartData = [];
         this.lineChartData.push(obj);
+        this.barChartData = [];
+        this.barChartData.push(obj);
         this.sharedDataService.chartData = data;
         },
         error => console.log(error)
@@ -95,41 +91,12 @@ export class ChartmonthComponent implements OnInit {
     scaleShowVerticalLines: false,
     responsive: true
   };
-  public barChartLabels: string[] = ['2006', '2007', '2008', '2009', '2010', '2011', '2012'];
+  public barChartLabels: string[] = ['1','2', '3', '4', '5', '6', '7','8','9','10','11', '12', '13', '14', '15', '16', '17','18','19','20','21', '22', '23', '24', '25', '26', '27','28','29','30'];
   public barChartType : ChartType = 'bar';
   public barChartLegend = true;
 
   public barChartData: any[] = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'}
   ];
-
-  // Doughnut
-  public doughnutChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData: number[] = [350, 450, 100];
-  public doughnutChartType : ChartType = 'doughnut';
-
-  // Radar
-  public radarChartLabels: string[] = ['Eating', 'Drinking', 'Sleeping', 'Designing', 'Coding', 'Cycling', 'Running'];
-
-  public radarChartData: any = [
-    {data: [65, 59, 90, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 96, 27, 100], label: 'Series B'}
-  ];
-  public radarChartType : ChartType = 'radar';
-
-  // Pie
-  public pieChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales'];
-  public pieChartData: number[] = [300, 500, 100];
-  public pieChartType: ChartType = 'pie';
-
-  // PolarArea
-  public polarAreaChartLabels: string[] = ['Download Sales', 'In-Store Sales', 'Mail Sales', 'Telesales', 'Corporate Sales'];
-  public polarAreaChartData: number[] = [300, 500, 100, 40, 120];
-  public polarAreaLegend = true;
-
-  public polarAreaChartType : ChartType = 'polarArea';
-
   // events
   public chartClicked(e: any): void {
     console.log(e);

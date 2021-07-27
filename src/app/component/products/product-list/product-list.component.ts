@@ -16,8 +16,8 @@ export class ProductListComponent implements OnInit {
   p = 1;
   categorys: any;
   brands: any;
-  selectCategory: any;
-  selectBrand: any;
+  selectCategory: any = 0;
+  selectBrand: any = 0;
   constructor(
     private productsService: ProductService,
     private brandService: BrandService,
@@ -68,7 +68,6 @@ export class ProductListComponent implements OnInit {
 
   //thêm vào giỏ hàng
   public addCart(prod: any): void{
-    debugger
     if(prod.coloList && prod.coloList.length > 0){
       if(this.sharedDataService.cart){
         prod.cartId = this.sharedDataService.cart.id;
@@ -89,21 +88,22 @@ export class ProductListComponent implements OnInit {
 
   }
 
-  // Tìm kiếm theo bộ lọc
   public search(): void {
     console.log(this.selectCategory);
-
-    // nhận vào data
+    if (this.selectBrand != 0 && this.selectCategory != 0) {
     const data = {
       productTypeId: this.selectCategory,
       brandId: this.selectBrand
     };
-    //truyền vào data
     this.productsService.getFind(data).subscribe(
       data=> {
         this.sharedDataService.productList = data;
       },
       error => console.log(error)
     );
+    }else {
+      alert("Chưa chọn loại sản phẩm và hãng sản xuất")
+    }
+
   }
 }

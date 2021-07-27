@@ -10,7 +10,7 @@ import { SharedDataService } from 'src/app/service/shared-data.service';
 })
 export class CartComponent implements OnInit {
   // productPriceSell
-  shippingCost = 1;
+  shippingCost = 15000;
   total = 0;
   constructor(
     private cartService: CartService,

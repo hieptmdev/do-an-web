@@ -27,14 +27,14 @@
                     </div>
                   </td>
                   <!-- giá bán -->
-                  <td>{{ item.productInfoProductPriceSell }}</td>
+                  <td>{{ item.productInfoProductPriceSell | currency:"VND"}}</td>
                   <!-- số lượng -->
                   <td>{{ item.numberPro }}</td>
                   <!-- màu -->
                   <td>{{item.productInfoColorName}}</td>
                   <!-- tổng tiền của 1 sản phẩm-->
                   <td >
-                    {{item.productInfoProductPriceSell * item.numberPro}}
+                    {{item.productInfoProductPriceSell * item.numberPro | currency:"VND"}}
                   </td>
 
                   <td>
@@ -64,9 +64,9 @@
               <div class="cart-summary">
                 <div class="cart-content">
                   <h1>Cart Summary</h1>
-                  <p>Sub Total<span>{{total}}</span></p>
-                  <p>Shipping Cost<span>${{shippingCost}}</span></p>
-                  <h2>Grand Total<span>${{(total + shippingCost)}}</span></h2>
+                  <p>Sub Total<span>{{total | currency: 'VND'}}</span></p>
+                  <p>Shipping Cost<span>{{shippingCost | currency: 'VND'}}</span></p>
+                  <h2>Grand Total<span>{{(total + shippingCost | currency: 'VND')}}</span></h2>
                 </div>
                 <div class="cart-btn">
                   <button>Update Cart</button>

@@ -1,19 +1,22 @@
-
 <div style="margin-bottom: 300px">
   <h1 class="mt-4">Quản lý hãng sản xuất</h1>
-      <button style="margin-left: 14px;height: 50px;margin-bottom:20px ;" (click)="addBrand()">Thêm hãng sản xuất</button>
+  <button
+    style="margin-left: 10px; height: 41px; margin-bottom: 20px; width: 255px"
+    (click)="addBrand()"
+  >
+    Thêm hãng sản xuất
+  </button>
   <table id="customers" style="border-collapse: collapse">
     <tr>
       <th>EDIT</th>
-      <th>
-        Id
-      </th>
+      <th>Id</th>
       <th>Code</th>
-      <th>Name
-        <mat-icon style="cursor: pointer" (click)="sortByCode('down')" >
+      <th>
+        Name
+        <mat-icon style="cursor: pointer" (click)="sortByCode('down')">
           arrow_downward
         </mat-icon>
-        <mat-icon style="cursor: pointer" (click)="sortByCode('up')" >
+        <mat-icon style="cursor: pointer" (click)="sortByCode('up')">
           arrow_upward
         </mat-icon>
       </th>
@@ -21,7 +24,7 @@
     <tr *ngFor="let item of sharedDataService.productList">
       <td>
         <mat-icon
-          style="cursor: pointer;"
+          style="cursor: pointer"
           title="Nhấn vào để soạn"
           (click)="deletebrand(item.id)"
         >
@@ -41,5 +44,4 @@
       <td>{{ item?.name }}</td>
     </tr>
   </table>
-
 </div>

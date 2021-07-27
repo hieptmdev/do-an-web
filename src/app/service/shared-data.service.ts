@@ -9,5 +9,6 @@ export class SharedDataService {
   public cate:any;
   public chartData: any;
   public oder: any;
+  public user:any;
   constructor() { }
 }

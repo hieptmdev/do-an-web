@@ -36,7 +36,7 @@
                             <td>{{item.productInfoProductPriceSell}}</td>
                             <td>{{item.numberProduct}}</td>
                             <td>{{item.productInfoColorName}}</td>
-                            <td>{{item.numberProduct *item.productInfoProductPriceSell}}VND</td>
+                            <td>{{item.numberProduct *item.productInfoProductPriceSell | currency: 'VND'}}</td>
                           </tr>
                         </table>
                       </div>
@@ -50,7 +50,7 @@
                 <td>{{oder.phoneNumber}}</td>
                 <td>{{oder.statusString}}</td>
                 <td>{{oder.numberProduct}}</td>
-                <td>{{oder.totalResult  }}</td>
+                <td>{{oder.totalResult | currency: 'VND'}}</td>
                 </tr>
             </table>
           </div>

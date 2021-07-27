@@ -46,7 +46,6 @@ export class HomeComponent implements OnInit {
     )
   };
   public addCart(prod: any):void {
-    debugger
     if(prod.coloList && prod.coloList.length > 0){
       if(this.sharedDataService.cart){
         prod.cartId = this.sharedDataService.cart.id;

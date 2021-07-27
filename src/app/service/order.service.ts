@@ -13,12 +13,15 @@ export class OrderService {
 
   constructor(private http: HttpClient,
               private jwtService: JwtHelperService) { }
-
   public getAlloderByUser(): Observable<any>{
     const token = localStorage.getItem('token');
     // @ts-ignore
     const userID = this.jwtService.decodeToken(token).userID;
     return this.http.get(`${this.url}/user/${userID}`, {observe: 'body'});
+  }
+  public selectByCode(status : any): Observable<any>{
+    return this.http.get(`${this.url}/select-oder-by-status/${status}`,{observe:'body'})
+    .pipe(catchError((e) => throwError(e)));
   }
   public getAll(): Observable<any>{
     return this.http.get(`${this.url}/all`, {observe: 'body'})
@@ -37,10 +40,9 @@ export class OrderService {
     return this.http.post(`${this.url}`, order, {observe: 'body'})
     .pipe(catchError((er)=> throwError(er)));
   }
-  public seach(data: any): Observable<any> {
-    const params = new HttpParams().set('code', data);
+  public seach(data: any) : Observable<any> {
     return this.http
-      .get(`${this.url}/seach`, { observe: 'body', params })
+      .post(`${this.url}/seach`, data, { observe: 'body' })
       .pipe(catchError((err) => throwError(err)));
   }
   //lấy chi tiết theo mã code
